@@ -16,10 +16,10 @@ require_once("verysimple/HTTP/RequestUtil.php");
 
 /** database connection settings */
 GlobalConfig::$CONNECTION_SETTING = new ConnectionSetting();
-GlobalConfig::$CONNECTION_SETTING->ConnectionString = "localhost:3306";
+GlobalConfig::$CONNECTION_SETTING->ConnectionString = "127.4.55.2:3306";
 GlobalConfig::$CONNECTION_SETTING->DBName = "petfinder";
-GlobalConfig::$CONNECTION_SETTING->Username = "root";
-GlobalConfig::$CONNECTION_SETTING->Password = "";
+GlobalConfig::$CONNECTION_SETTING->Username = "adminlXkzJaX";
+GlobalConfig::$CONNECTION_SETTING->Password = "v2P9VExsQ2Me";
 GlobalConfig::$CONNECTION_SETTING->Type = "MySQL";
 GlobalConfig::$CONNECTION_SETTING->Charset = "utf8";
 GlobalConfig::$CONNECTION_SETTING->Multibyte = true;

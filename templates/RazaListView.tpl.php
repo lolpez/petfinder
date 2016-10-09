@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title','petfinder | Razas');
+	$this->assign('title','PETFINDER | Razas');
 	$this->assign('nav','razas');
 
 	$this->display('_Header.tpl.php');
@@ -36,6 +36,7 @@
 			<tr>
 				<th id="header_Pkraza">Pkraza<% if (page.orderBy == 'Pkraza') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Nombre">Nombre<% if (page.orderBy == 'Nombre') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+				<th id="header_FktipoMascota">Fktipo Mascota<% if (page.orderBy == 'FktipoMascota') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -43,6 +44,7 @@
 			<tr id="<%= _.escape(item.get('pkraza')) %>">
 				<td><%= _.escape(item.get('pkraza') || '') %></td>
 				<td><%= _.escape(item.get('nombre') || '') %></td>
+				<td><%= _.escape(item.get('fktipoMascota') || '') %></td>
 			</tr>
 		<% }); %>
 		</tbody>
@@ -67,6 +69,13 @@
 					<div class="controls inline-inputs">
 						<input type="text" class="input-xlarge" id="nombre" placeholder="Nombre" value="<%= _.escape(item.get('nombre') || '') %>">
 						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div id="fktipoMascotaInputContainer" class="control-group">
+					<label class="control-label" for="fktipoMascota">Tipo Mascota</label>
+					<div class="controls inline-inputs">
+                        <select class="form-control" id="fktipoMascota"></select>
+                        <span class="help-inline"></span>
 					</div>
 				</div>
 			</fieldset>

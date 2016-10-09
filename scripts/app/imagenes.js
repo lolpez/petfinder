@@ -265,7 +265,7 @@ var page = {
 		page.imagen.save({
 
 			'ruta': $('input#ruta').val(),
-			'fkmascota': $('input#fkmascota').val()
+			'fkposter': $('input#fkposter').val()
 		}, {
 			wait: true,
 			success: function(){

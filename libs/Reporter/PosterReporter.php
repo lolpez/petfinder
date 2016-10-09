@@ -20,7 +20,7 @@ class PosterReporter extends Reporter
 
 	// the properties in this class must match the columns returned by GetCustomQuery().
 	// 'CustomFieldExample' is an example that is not part of the `poster` table
-	public $CustomFieldExample;
+	public $Imagen;
 
 	public $Pkposter;
 	public $Fkusuario;
@@ -46,7 +46,7 @@ class PosterReporter extends Reporter
 	static function GetCustomQuery($criteria)
 	{
 		$sql = "select
-			'custom value here...' as CustomFieldExample
+			`imagen`.`ruta` as Imagen
 			,`poster`.`pkposter` as Pkposter
 			,`poster`.`fkusuario` as Fkusuario
 			,`poster`.`fkmascota` as Fkmascota
@@ -58,8 +58,9 @@ class PosterReporter extends Reporter
 			,`poster`.`descripcion` as Descripcion
 			,`poster`.`fecha` as Fecha
 			,`poster`.`hora` as Hora
-			,`poster`.`estado` as Estado
-		from `poster`";
+		from `poster`
+        inner join `imagen` on `poster`.`pkposter`=`imagen`.`fkposter`
+        ";
 
 		// the criteria can be used or you can write your own custom logic.
 		// be sure to escape any user input with $criteria->Escape()

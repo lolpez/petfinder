@@ -224,6 +224,47 @@ var page = {
 		$('.timepicker-default').timepicker({ defaultTime: 'value' });
 
 
+        // poblar el combobox con los tipos de mascotas
+        // TODO: load only the selected value, then fetch all options when the drop-down is clicked
+        var tipo_mascotaValues = new model.TipoMascotaCollection();
+        tipo_mascotaValues.fetch({
+            success: function(c){
+                var dd = $('#fktipoMascota');
+                c.forEach(function(item,index)
+                {
+                    dd.append(app.getOptionHtml(
+                        item.get('pktipoMascota'),
+                        item.get('nombre'),
+                        page.mascota.get('fktipoMascota') == item.get('pktipoMascota')
+                    ));
+                });
+            },
+            error: function(collection,response,scope){
+                app.appendAlert(app.getErrorMessage(response), 'alert-error',0,'modelAlert');
+            }
+        });
+
+        // poblar el combobox con las razas
+        // TODO: load only the selected value, then fetch all options when the drop-down is clicked
+        var razaValues = new model.RazaCollection();
+        razaValues.fetch({
+            success: function(c){
+                var dd = $('#fkraza');
+                c.forEach(function(item,index)
+                {
+                    dd.append(app.getOptionHtml(
+                        item.get('pkraza'),
+                        item.get('nombre'),
+                        page.mascota.get('fkraza') == item.get('pkraza')
+                    ));
+                });
+            },
+            error: function(collection,response,scope){
+                app.appendAlert(app.getErrorMessage(response), 'alert-error',0,'modelAlert');
+            }
+        });
+
+
 		if (showDeleteButton) {
 			// attach click handlers to the delete buttons
 
@@ -267,9 +308,8 @@ var page = {
 			'nombre': $('input#nombre').val(),
 			'tamano': $('input#tamano').val(),
 			'color': $('input#color').val(),
-			'fkraza': $('input#fkraza').val(),
-			'fktipoMascota': $('input#fktipoMascota').val(),
-			'estado': $('input#estado').val()
+			'fktipoMascota': $('select#fktipoMascota').val(),
+			'fkraza': $('select#fkraza').val(),
 		}, {
 			wait: true,
 			success: function(){

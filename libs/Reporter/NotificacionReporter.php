@@ -25,7 +25,8 @@ class NotificacionReporter extends Reporter
 	public $Pknotificacion;
 	public $Fecha;
 	public $Hora;
-	public $Fkusuario;
+	public $FkusuarioDestino;
+	public $Fkposter;
 	public $Visto;
 
 	/*
@@ -43,7 +44,8 @@ class NotificacionReporter extends Reporter
 			,`notificacion`.`pknotificacion` as Pknotificacion
 			,`notificacion`.`fecha` as Fecha
 			,`notificacion`.`hora` as Hora
-			,`notificacion`.`fkusuario` as Fkusuario
+			,`notificacion`.`fkusuario_destino` as FkusuarioDestino
+			,`notificacion`.`fkposter` as Fkposter
 			,`notificacion`.`visto` as Visto
 		from `notificacion`";
 

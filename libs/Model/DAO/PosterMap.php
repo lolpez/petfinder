@@ -62,7 +62,6 @@ class PosterMap implements IDaoMap, IDaoMap2
 			self::$FM["Descripcion"] = new FieldMap("Descripcion","poster","descripcion",false,FM_TYPE_TEXT,null,null,false);
 			self::$FM["Fecha"] = new FieldMap("Fecha","poster","fecha",false,FM_TYPE_VARCHAR,20,null,false);
 			self::$FM["Hora"] = new FieldMap("Hora","poster","hora",false,FM_TYPE_VARCHAR,20,null,false);
-			self::$FM["Estado"] = new FieldMap("Estado","poster","estado",false,FM_TYPE_TINYINT,4,null,false);
 		}
 		return self::$FM;
 	}

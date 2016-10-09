@@ -186,21 +186,6 @@ class PosterCriteriaDAO extends Criteria
 	public $Hora_IsEmpty;
 	public $Hora_BitwiseOr;
 	public $Hora_BitwiseAnd;
-	public $Estado_Equals;
-	public $Estado_NotEquals;
-	public $Estado_IsLike;
-	public $Estado_IsNotLike;
-	public $Estado_BeginsWith;
-	public $Estado_EndsWith;
-	public $Estado_GreaterThan;
-	public $Estado_GreaterThanOrEqual;
-	public $Estado_LessThan;
-	public $Estado_LessThanOrEqual;
-	public $Estado_In;
-	public $Estado_IsNotEmpty;
-	public $Estado_IsEmpty;
-	public $Estado_BitwiseOr;
-	public $Estado_BitwiseAnd;
 
 }
 

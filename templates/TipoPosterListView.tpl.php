@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title','petfinder | TipoPosters');
+	$this->assign('title','PETFINDER | TipoPosters');
 	$this->assign('nav','tipoposters');
 
 	$this->display('_Header.tpl.php');

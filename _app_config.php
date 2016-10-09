@@ -1,6 +1,6 @@
 <?php
 /**
- * @package petfinder
+ * @package PETFINDER
  *
  * APPLICATION-WIDE CONFIGURATION SETTINGS
  *
@@ -70,6 +70,9 @@ GlobalConfig::$TEMPLATE_PATH = GlobalConfig::$APP_ROOT . '/templates/';
  * Controller without having to parse the URL for parameters such as IDs
  */
 GlobalConfig::$ROUTE_MAP = array(
+
+    //Web Service Personalizado
+    'POST:web_service/poster' => array('route' => 'Poster.NuevoPost'),
 
 	// default controller when no route specified
 	'GET:' => array('route' => 'Default.Home'),

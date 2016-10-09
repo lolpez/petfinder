@@ -52,8 +52,8 @@ class ImagenMap implements IDaoMap, IDaoMap2
 		{
 			self::$FM = Array();
 			self::$FM["Pkimagen"] = new FieldMap("Pkimagen","imagen","pkimagen",true,FM_TYPE_INT,11,null,true);
-			self::$FM["Ruta"] = new FieldMap("Ruta","imagen","ruta",false,FM_TYPE_INT,11,null,false);
-			self::$FM["Fkmascota"] = new FieldMap("Fkmascota","imagen","fkmascota",false,FM_TYPE_INT,11,null,false);
+            self::$FM["Ruta"] = new FieldMap("Ruta","imagen","ruta",false,FM_TYPE_VARCHAR,100,null,false);
+			self::$FM["Fkposter"] = new FieldMap("Fkposter","imagen","fkposter",false,FM_TYPE_INT,11,null,false);
 		}
 		return self::$FM;
 	}

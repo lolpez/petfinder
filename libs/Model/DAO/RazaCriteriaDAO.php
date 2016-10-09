@@ -51,6 +51,21 @@ class RazaCriteriaDAO extends Criteria
 	public $Nombre_IsEmpty;
 	public $Nombre_BitwiseOr;
 	public $Nombre_BitwiseAnd;
+	public $FktipoMascota_Equals;
+	public $FktipoMascota_NotEquals;
+	public $FktipoMascota_IsLike;
+	public $FktipoMascota_IsNotLike;
+	public $FktipoMascota_BeginsWith;
+	public $FktipoMascota_EndsWith;
+	public $FktipoMascota_GreaterThan;
+	public $FktipoMascota_GreaterThanOrEqual;
+	public $FktipoMascota_LessThan;
+	public $FktipoMascota_LessThanOrEqual;
+	public $FktipoMascota_In;
+	public $FktipoMascota_IsNotEmpty;
+	public $FktipoMascota_IsEmpty;
+	public $FktipoMascota_BitwiseOr;
+	public $FktipoMascota_BitwiseAnd;
 
 }
 

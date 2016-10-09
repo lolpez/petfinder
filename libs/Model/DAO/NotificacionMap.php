@@ -54,8 +54,9 @@ class NotificacionMap implements IDaoMap, IDaoMap2
 			self::$FM["Pknotificacion"] = new FieldMap("Pknotificacion","notificacion","pknotificacion",true,FM_TYPE_INT,11,null,true);
 			self::$FM["Fecha"] = new FieldMap("Fecha","notificacion","fecha",false,FM_TYPE_VARCHAR,20,null,false);
 			self::$FM["Hora"] = new FieldMap("Hora","notificacion","hora",false,FM_TYPE_VARCHAR,20,null,false);
-			self::$FM["Fkusuario"] = new FieldMap("Fkusuario","notificacion","fkusuario",false,FM_TYPE_INT,11,null,false);
-			self::$FM["Visto"] = new FieldMap("Visto","notificacion","visto",false,FM_TYPE_INT,11,null,false);
+			self::$FM["FkusuarioDestino"] = new FieldMap("FkusuarioDestino","notificacion","fkusuario_destino",false,FM_TYPE_INT,11,null,false);
+			self::$FM["Fkposter"] = new FieldMap("Fkposter","notificacion","fkposter",false,FM_TYPE_INT,11,null,false);
+			self::$FM["Visto"] = new FieldMap("Visto","notificacion","visto",false,FM_TYPE_TINYINT,4,null,false);
 		}
 		return self::$FM;
 	}

@@ -1,6 +1,6 @@
 <?php
 /**
- * @package petfinder
+ * @package PETFINDER
  *
  * MACHINE-SPECIFIC CONFIGURATION SETTINGS
  *
@@ -20,7 +20,7 @@ GlobalConfig::$CONNECTION_SETTING->ConnectionString = "localhost:3306";
 GlobalConfig::$CONNECTION_SETTING->DBName = "petfinder";
 GlobalConfig::$CONNECTION_SETTING->Username = "root";
 GlobalConfig::$CONNECTION_SETTING->Password = "";
-GlobalConfig::$CONNECTION_SETTING->Type = "MySQL_PDO";
+GlobalConfig::$CONNECTION_SETTING->Type = "MySQL";
 GlobalConfig::$CONNECTION_SETTING->Charset = "utf8";
 GlobalConfig::$CONNECTION_SETTING->Multibyte = true;
 // GlobalConfig::$CONNECTION_SETTING->BootstrapSQL = "SET SQL_BIG_SELECTS=1";

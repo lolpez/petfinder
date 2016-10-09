@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title','petfinder | Notificaciones');
+	$this->assign('title','PETFINDER | Notificaciones');
 	$this->assign('nav','notificaciones');
 
 	$this->display('_Header.tpl.php');
@@ -37,8 +37,11 @@
 				<th id="header_Pknotificacion">Pknotificacion<% if (page.orderBy == 'Pknotificacion') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Fecha">Fecha<% if (page.orderBy == 'Fecha') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Hora">Hora<% if (page.orderBy == 'Hora') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Fkusuario">Fkusuario<% if (page.orderBy == 'Fkusuario') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+				<th id="header_FkusuarioDestino">Fkusuario Destino<% if (page.orderBy == 'FkusuarioDestino') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+				<th id="header_Fkposter">Fkposter<% if (page.orderBy == 'Fkposter') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
 				<th id="header_Visto">Visto<% if (page.orderBy == 'Visto') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+-->
 			</tr>
 		</thead>
 		<tbody>
@@ -47,8 +50,11 @@
 				<td><%= _.escape(item.get('pknotificacion') || '') %></td>
 				<td><%= _.escape(item.get('fecha') || '') %></td>
 				<td><%= _.escape(item.get('hora') || '') %></td>
-				<td><%= _.escape(item.get('fkusuario') || '') %></td>
+				<td><%= _.escape(item.get('fkusuarioDestino') || '') %></td>
+				<td><%= _.escape(item.get('fkposter') || '') %></td>
+<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
 				<td><%= _.escape(item.get('visto') || '') %></td>
+-->
 			</tr>
 		<% }); %>
 		</tbody>
@@ -82,10 +88,17 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
-				<div id="fkusuarioInputContainer" class="control-group">
-					<label class="control-label" for="fkusuario">Fkusuario</label>
+				<div id="fkusuarioDestinoInputContainer" class="control-group">
+					<label class="control-label" for="fkusuarioDestino">Fkusuario Destino</label>
 					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="fkusuario" placeholder="Fkusuario" value="<%= _.escape(item.get('fkusuario') || '') %>">
+						<input type="text" class="input-xlarge" id="fkusuarioDestino" placeholder="Fkusuario Destino" value="<%= _.escape(item.get('fkusuarioDestino') || '') %>">
+						<span class="help-inline"></span>
+					</div>
+				</div>
+				<div id="fkposterInputContainer" class="control-group">
+					<label class="control-label" for="fkposter">Fkposter</label>
+					<div class="controls inline-inputs">
+						<input type="text" class="input-xlarge" id="fkposter" placeholder="Fkposter" value="<%= _.escape(item.get('fkposter') || '') %>">
 						<span class="help-inline"></span>
 					</div>
 				</div>

@@ -1,5 +1,5 @@
 <?php
-/** @package    petfinder::Controller */
+/** @package    PETFINDER::Controller */
 
 /** import supporting libraries */
 require_once("AppBaseController.php");
@@ -10,7 +10,7 @@ require_once("Model/TipoMascota.php");
  * controller is responsible for processing input from the user, reading/updating
  * the model as necessary and displaying the appropriate view.
  *
- * @package petfinder::Controller
+ * @package PETFINDER::Controller
  * @author ClassBuilder
  * @version 1.0
  */

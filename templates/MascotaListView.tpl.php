@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title','petfinder | Mascotas');
+	$this->assign('title','PETFINDER | Mascotas');
 	$this->assign('nav','mascotas');
 
 	$this->display('_Header.tpl.php');
@@ -38,11 +38,9 @@
 				<th id="header_Nombre">Nombre<% if (page.orderBy == 'Nombre') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Tamano">Tamano<% if (page.orderBy == 'Tamano') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Color">Color<% if (page.orderBy == 'Color') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Fkraza">Fkraza<% if (page.orderBy == 'Fkraza') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
 				<th id="header_FktipoMascota">Fktipo Mascota<% if (page.orderBy == 'FktipoMascota') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+				<th id="header_Fkraza">Fkraza<% if (page.orderBy == 'Fkraza') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Estado">Estado<% if (page.orderBy == 'Estado') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
--->
 			</tr>
 		</thead>
 		<tbody>
@@ -52,11 +50,9 @@
 				<td><%= _.escape(item.get('nombre') || '') %></td>
 				<td><%= _.escape(item.get('tamano') || '') %></td>
 				<td><%= _.escape(item.get('color') || '') %></td>
-				<td><%= _.escape(item.get('fkraza') || '') %></td>
-<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
 				<td><%= _.escape(item.get('fktipoMascota') || '') %></td>
+				<td><%= _.escape(item.get('fkraza') || '') %></td>
 				<td><%= _.escape(item.get('estado') || '') %></td>
--->
 			</tr>
 		<% }); %>
 		</tbody>
@@ -97,25 +93,18 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
-				<div id="fkrazaInputContainer" class="control-group">
-					<label class="control-label" for="fkraza">Fkraza</label>
-					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="fkraza" placeholder="Fkraza" value="<%= _.escape(item.get('fkraza') || '') %>">
-						<span class="help-inline"></span>
-					</div>
-				</div>
 				<div id="fktipoMascotaInputContainer" class="control-group">
-					<label class="control-label" for="fktipoMascota">Fktipo Mascota</label>
+					<label class="control-label" for="fktipoMascota">Tipo Mascota</label>
 					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="fktipoMascota" placeholder="Fktipo Mascota" value="<%= _.escape(item.get('fktipoMascota') || '') %>">
-						<span class="help-inline"></span>
+                        <select class="form-control" id="fktipoMascota"></select>
+                        <span class="help-inline"></span>
 					</div>
 				</div>
-				<div id="estadoInputContainer" class="control-group">
-					<label class="control-label" for="estado">Estado</label>
+				<div id="fkrazaInputContainer" class="control-group">
+					<label class="control-label" for="fkraza">Raza</label>
 					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="estado" placeholder="Estado" value="<%= _.escape(item.get('estado') || '') %>">
-						<span class="help-inline"></span>
+                        <select class="form-control" id="fkraza"></select>
+                        <span class="help-inline"></span>
 					</div>
 				</div>
 			</fieldset>

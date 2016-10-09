@@ -1,5 +1,5 @@
 /**
- * backbone model definitions for petfinder
+ * backbone model definitions for PETFINDER
  */
 
 /**
@@ -140,11 +140,11 @@ model.ImagenModel = Backbone.Model.extend({
 	idAttribute: 'pkimagen',
 	pkimagen: '',
 	ruta: '',
-	fkmascota: '',
+	fkposter: '',
 	defaults: {
 		'pkimagen': null,
 		'ruta': '',
-		'fkmascota': ''
+		'fkposter': ''
 	}
 });
 
@@ -166,16 +166,16 @@ model.MascotaModel = Backbone.Model.extend({
 	nombre: '',
 	tamano: '',
 	color: '',
-	fkraza: '',
 	fktipoMascota: '',
+	fkraza: '',
 	estado: '',
 	defaults: {
 		'pkmascota': null,
 		'nombre': '',
 		'tamano': '',
 		'color': '',
-		'fkraza': '',
 		'fktipoMascota': '',
+		'fkraza': '',
 		'estado': ''
 	}
 });
@@ -197,13 +197,15 @@ model.NotificacionModel = Backbone.Model.extend({
 	pknotificacion: '',
 	fecha: '',
 	hora: '',
-	fkusuario: '',
+	fkusuarioDestino: '',
+	fkposter: '',
 	visto: '',
 	defaults: {
 		'pknotificacion': null,
 		'fecha': '',
 		'hora': '',
-		'fkusuario': '',
+		'fkusuarioDestino': '',
+		'fkposter': '',
 		'visto': ''
 	}
 });
@@ -233,7 +235,7 @@ model.PosterModel = Backbone.Model.extend({
 	descripcion: '',
 	fecha: '',
 	hora: '',
-	estado: '',
+	imagen: '',
 	defaults: {
 		'pkposter': null,
 		'fkusuario': '',
@@ -246,7 +248,7 @@ model.PosterModel = Backbone.Model.extend({
 		'descripcion': '',
 		'fecha': '',
 		'hora': '',
-		'estado': ''
+		'imagen': ''
 	}
 });
 
@@ -266,9 +268,11 @@ model.RazaModel = Backbone.Model.extend({
 	idAttribute: 'pkraza',
 	pkraza: '',
 	nombre: '',
+	fktipoMascota: '',
 	defaults: {
 		'pkraza': null,
-		'nombre': ''
+		'nombre': '',
+		'fktipoMascota': ''
 	}
 });
 

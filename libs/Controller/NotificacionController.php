@@ -1,5 +1,5 @@
 <?php
-/** @package    petfinder::Controller */
+/** @package    PETFINDER::Controller */
 
 /** import supporting libraries */
 require_once("AppBaseController.php");
@@ -10,7 +10,7 @@ require_once("Model/Notificacion.php");
  * controller is responsible for processing input from the user, reading/updating
  * the model as necessary and displaying the appropriate view.
  *
- * @package petfinder::Controller
+ * @package PETFINDER::Controller
  * @author ClassBuilder
  * @version 1.0
  */
@@ -52,7 +52,7 @@ class NotificacionController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Pknotificacion,Fecha,Hora,Fkusuario,Visto'
+				new CriteriaFilter('Pknotificacion,Fecha,Hora,FkusuarioDestino,Fkposter,Visto'
 				, '%'.$filter.'%')
 			);
 
@@ -155,7 +155,8 @@ class NotificacionController extends AppBaseController
 
 			$notificacion->Fecha = $this->SafeGetVal($json, 'fecha');
 			$notificacion->Hora = $this->SafeGetVal($json, 'hora');
-			$notificacion->Fkusuario = $this->SafeGetVal($json, 'fkusuario');
+			$notificacion->FkusuarioDestino = $this->SafeGetVal($json, 'fkusuarioDestino');
+			$notificacion->Fkposter = $this->SafeGetVal($json, 'fkposter');
 			$notificacion->Visto = $this->SafeGetVal($json, 'visto');
 
 			$notificacion->Validate();
@@ -203,7 +204,8 @@ class NotificacionController extends AppBaseController
 
 			$notificacion->Fecha = $this->SafeGetVal($json, 'fecha', $notificacion->Fecha);
 			$notificacion->Hora = $this->SafeGetVal($json, 'hora', $notificacion->Hora);
-			$notificacion->Fkusuario = $this->SafeGetVal($json, 'fkusuario', $notificacion->Fkusuario);
+			$notificacion->FkusuarioDestino = $this->SafeGetVal($json, 'fkusuarioDestino', $notificacion->FkusuarioDestino);
+			$notificacion->Fkposter = $this->SafeGetVal($json, 'fkposter', $notificacion->Fkposter);
 			$notificacion->Visto = $this->SafeGetVal($json, 'visto', $notificacion->Visto);
 
 			$notificacion->Validate();

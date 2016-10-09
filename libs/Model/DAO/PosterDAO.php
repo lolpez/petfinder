@@ -54,9 +54,6 @@ class PosterDAO extends Phreezable
 	/** @var string */
 	public $Hora;
 
-	/** @var int */
-	public $Estado;
-
 
 
 }

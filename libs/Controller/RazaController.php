@@ -1,5 +1,5 @@
 <?php
-/** @package    petfinder::Controller */
+/** @package    PETFINDER::Controller */
 
 /** import supporting libraries */
 require_once("AppBaseController.php");
@@ -10,7 +10,7 @@ require_once("Model/Raza.php");
  * controller is responsible for processing input from the user, reading/updating
  * the model as necessary and displaying the appropriate view.
  *
- * @package petfinder::Controller
+ * @package PETFINDER::Controller
  * @author ClassBuilder
  * @version 1.0
  */
@@ -37,7 +37,7 @@ class RazaController extends AppBaseController
 	 */
 	public function ListView()
 	{
-		$this->Render();
+        $this->Render();
 	}
 
 	/**
@@ -52,7 +52,7 @@ class RazaController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Pkraza,Nombre'
+				new CriteriaFilter('Pkraza,Nombre,FktipoMascota'
 				, '%'.$filter.'%')
 			);
 
@@ -154,6 +154,7 @@ class RazaController extends AppBaseController
 			// $raza->Pkraza = $this->SafeGetVal($json, 'pkraza');
 
 			$raza->Nombre = $this->SafeGetVal($json, 'nombre');
+			$raza->FktipoMascota = $this->SafeGetVal($json, 'fktipoMascota');
 
 			$raza->Validate();
 			$errors = $raza->GetValidationErrors();
@@ -199,6 +200,7 @@ class RazaController extends AppBaseController
 			// $raza->Pkraza = $this->SafeGetVal($json, 'pkraza', $raza->Pkraza);
 
 			$raza->Nombre = $this->SafeGetVal($json, 'nombre', $raza->Nombre);
+			$raza->FktipoMascota = $this->SafeGetVal($json, 'fktipoMascota', $raza->FktipoMascota);
 
 			$raza->Validate();
 			$errors = $raza->GetValidationErrors();

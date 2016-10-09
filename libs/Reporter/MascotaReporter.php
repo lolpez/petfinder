@@ -26,8 +26,8 @@ class MascotaReporter extends Reporter
 	public $Nombre;
 	public $Tamano;
 	public $Color;
-	public $Fkraza;
 	public $FktipoMascota;
+	public $Fkraza;
 	public $Estado;
 
 	/*
@@ -46,8 +46,8 @@ class MascotaReporter extends Reporter
 			,`mascota`.`nombre` as Nombre
 			,`mascota`.`tamano` as Tamano
 			,`mascota`.`color` as Color
-			,`mascota`.`fkraza` as Fkraza
 			,`mascota`.`fktipo_mascota` as FktipoMascota
+			,`mascota`.`fkraza` as Fkraza
 			,`mascota`.`estado` as Estado
 		from `mascota`";
 

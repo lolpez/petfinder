@@ -1,5 +1,5 @@
 <?php
-/** @package    petfinder::Controller */
+/** @package    PETFINDER::Controller */
 
 /** import supporting libraries */
 require_once("AppBaseController.php");
@@ -10,7 +10,7 @@ require_once("Model/Imagen.php");
  * controller is responsible for processing input from the user, reading/updating
  * the model as necessary and displaying the appropriate view.
  *
- * @package petfinder::Controller
+ * @package PETFINDER::Controller
  * @author ClassBuilder
  * @version 1.0
  */
@@ -52,7 +52,7 @@ class ImagenController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Pkimagen,Ruta,Fkmascota'
+				new CriteriaFilter('Pkimagen,Ruta,Fkposter'
 				, '%'.$filter.'%')
 			);
 
@@ -154,7 +154,7 @@ class ImagenController extends AppBaseController
 			// $imagen->Pkimagen = $this->SafeGetVal($json, 'pkimagen');
 
 			$imagen->Ruta = $this->SafeGetVal($json, 'ruta');
-			$imagen->Fkmascota = $this->SafeGetVal($json, 'fkmascota');
+			$imagen->Fkposter = $this->SafeGetVal($json, 'fkposter');
 
 			$imagen->Validate();
 			$errors = $imagen->GetValidationErrors();
@@ -200,7 +200,7 @@ class ImagenController extends AppBaseController
 			// $imagen->Pkimagen = $this->SafeGetVal($json, 'pkimagen', $imagen->Pkimagen);
 
 			$imagen->Ruta = $this->SafeGetVal($json, 'ruta', $imagen->Ruta);
-			$imagen->Fkmascota = $this->SafeGetVal($json, 'fkmascota', $imagen->Fkmascota);
+			$imagen->Fkposter = $this->SafeGetVal($json, 'fkposter', $imagen->Fkposter);
 
 			$imagen->Validate();
 			$errors = $imagen->GetValidationErrors();

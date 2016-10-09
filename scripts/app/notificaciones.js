@@ -266,7 +266,8 @@ var page = {
 
 			'fecha': $('input#fecha').val(),
 			'hora': $('input#hora').val(),
-			'fkusuario': $('input#fkusuario').val(),
+			'fkusuarioDestino': $('input#fkusuarioDestino').val(),
+			'fkposter': $('input#fkposter').val(),
 			'visto': $('input#visto').val()
 		}, {
 			wait: true,

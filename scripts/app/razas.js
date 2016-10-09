@@ -224,7 +224,28 @@ var page = {
 		$('.timepicker-default').timepicker({ defaultTime: 'value' });
 
 
-		if (showDeleteButton) {
+        // poblar el combobox con los tipos de mascotas
+        // TODO: load only the selected value, then fetch all options when the drop-down is clicked
+        var tipo_mascotaValues = new model.TipoMascotaCollection();
+        tipo_mascotaValues.fetch({
+            success: function(c){
+                var dd = $('#fktipoMascota');
+                c.forEach(function(item,index)
+                {
+                    dd.append(app.getOptionHtml(
+                        item.get('pktipoMascota'),
+                        item.get('nombre'),
+                        page.raza.get('fktipoMascota') == item.get('pktipoMascota')
+                    ));
+                });
+            },
+            error: function(collection,response,scope){
+                app.appendAlert(app.getErrorMessage(response), 'alert-error',0,'modelAlert');
+            }
+        });
+
+
+        if (showDeleteButton) {
 			// attach click handlers to the delete buttons
 
 			$('#deleteRazaButton').click(function(e) {
@@ -264,7 +285,8 @@ var page = {
 
 		page.raza.save({
 
-			'nombre': $('input#nombre').val()
+			'nombre': $('input#nombre').val(),
+			'fktipoMascota': $('select#fktipoMascota').val()
 		}, {
 			wait: true,
 			success: function(){

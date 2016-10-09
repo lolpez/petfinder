@@ -34,10 +34,10 @@ class MascotaDAO extends Phreezable
 	public $Color;
 
 	/** @var int */
-	public $Fkraza;
+	public $FktipoMascota;
 
 	/** @var int */
-	public $FktipoMascota;
+	public $Fkraza;
 
 	/** @var int */
 	public $Estado;

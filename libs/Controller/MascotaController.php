@@ -1,5 +1,5 @@
 <?php
-/** @package    petfinder::Controller */
+/** @package    PETFINDER::Controller */
 
 /** import supporting libraries */
 require_once("AppBaseController.php");
@@ -10,7 +10,7 @@ require_once("Model/Mascota.php");
  * controller is responsible for processing input from the user, reading/updating
  * the model as necessary and displaying the appropriate view.
  *
- * @package petfinder::Controller
+ * @package PETFINDER::Controller
  * @author ClassBuilder
  * @version 1.0
  */
@@ -52,7 +52,7 @@ class MascotaController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Pkmascota,Nombre,Tamano,Color,Fkraza,FktipoMascota,Estado'
+				new CriteriaFilter('Pkmascota,Nombre,Tamano,Color,FktipoMascota,Fkraza,Estado'
 				, '%'.$filter.'%')
 			);
 
@@ -156,9 +156,8 @@ class MascotaController extends AppBaseController
 			$mascota->Nombre = $this->SafeGetVal($json, 'nombre');
 			$mascota->Tamano = $this->SafeGetVal($json, 'tamano');
 			$mascota->Color = $this->SafeGetVal($json, 'color');
-			$mascota->Fkraza = $this->SafeGetVal($json, 'fkraza');
 			$mascota->FktipoMascota = $this->SafeGetVal($json, 'fktipoMascota');
-			$mascota->Estado = $this->SafeGetVal($json, 'estado');
+			$mascota->Fkraza = $this->SafeGetVal($json, 'fkraza');
 
 			$mascota->Validate();
 			$errors = $mascota->GetValidationErrors();
@@ -206,8 +205,8 @@ class MascotaController extends AppBaseController
 			$mascota->Nombre = $this->SafeGetVal($json, 'nombre', $mascota->Nombre);
 			$mascota->Tamano = $this->SafeGetVal($json, 'tamano', $mascota->Tamano);
 			$mascota->Color = $this->SafeGetVal($json, 'color', $mascota->Color);
-			$mascota->Fkraza = $this->SafeGetVal($json, 'fkraza', $mascota->Fkraza);
 			$mascota->FktipoMascota = $this->SafeGetVal($json, 'fktipoMascota', $mascota->FktipoMascota);
+			$mascota->Fkraza = $this->SafeGetVal($json, 'fkraza', $mascota->Fkraza);
 			$mascota->Estado = $this->SafeGetVal($json, 'estado', $mascota->Estado);
 
 			$mascota->Validate();

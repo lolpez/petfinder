@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title','petfinder | Posters');
+	$this->assign('title','PETFINDER | Posters');
 	$this->assign('nav','posters');
 
 	$this->display('_Header.tpl.php');
@@ -31,48 +31,70 @@
 
 	<!-- underscore template for the collection -->
 	<script type="text/template" id="posterCollectionTemplate">
-		<table class="collection table table-bordered table-hover">
-		<thead>
-			<tr>
-				<th id="header_Pkposter">Pkposter<% if (page.orderBy == 'Pkposter') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Fkusuario">Fkusuario<% if (page.orderBy == 'Fkusuario') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Fkmascota">Fkmascota<% if (page.orderBy == 'Fkmascota') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_FktipoPoster">Fktipo Poster<% if (page.orderBy == 'FktipoPoster') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Latitud">Latitud<% if (page.orderBy == 'Latitud') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
-				<th id="header_Longitud">Longitud<% if (page.orderBy == 'Longitud') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Recompensa">Recompensa<% if (page.orderBy == 'Recompensa') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_TipoMoneda">Tipo Moneda<% if (page.orderBy == 'TipoMoneda') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Descripcion">Descripcion<% if (page.orderBy == 'Descripcion') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Fecha">Fecha<% if (page.orderBy == 'Fecha') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Hora">Hora<% if (page.orderBy == 'Hora') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Estado">Estado<% if (page.orderBy == 'Estado') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
--->
-			</tr>
-		</thead>
-		<tbody>
-		<% items.each(function(item) { %>
-			<tr id="<%= _.escape(item.get('pkposter')) %>">
-				<td><%= _.escape(item.get('pkposter') || '') %></td>
-				<td><%= _.escape(item.get('fkusuario') || '') %></td>
-				<td><%= _.escape(item.get('fkmascota') || '') %></td>
-				<td><%= _.escape(item.get('fktipoPoster') || '') %></td>
-				<td><%= _.escape(item.get('latitud') || '') %></td>
-<!-- UNCOMMENT TO SHOW ADDITIONAL COLUMNS
-				<td><%= _.escape(item.get('longitud') || '') %></td>
-				<td><%= _.escape(item.get('recompensa') || '') %></td>
-				<td><%= _.escape(item.get('tipoMoneda') || '') %></td>
-				<td><%= _.escape(item.get('descripcion') || '') %></td>
-				<td><%= _.escape(item.get('fecha') || '') %></td>
-				<td><%= _.escape(item.get('hora') || '') %></td>
-				<td><%= _.escape(item.get('estado') || '') %></td>
--->
-			</tr>
-		<% }); %>
-		</tbody>
-		</table>
-
-		<%=  view.getPaginationHtml(page) %>
+        <%=  view.getPaginationHtml(page) %>
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#tab1" data-toggle="tab">Blog</a></li>
+                <li><a href="#tab2" data-toggle="tab">Tabla</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="tab1">
+                    <ul class="thumbnails">
+                        <% items.each(function(item) { %>
+                            <li class="span3">
+                                <div class="thumbnail">
+                                    <a href="<%= _.escape(item.get('imagen') || '') %>" class="thumbnail" target="_blank">
+                                        <img src="<%= _.escape(item.get('imagen') || '') %>" width="100px">
+                                    </a>
+                                    <div class="caption">
+                                        <h3><%= _.escape(item.get('fkmascota') || '') %></h3>
+                                        <p><%= _.escape(item.get('descripcion') || '') %></p>
+                                    </div>
+                                </div>
+                            </li>
+                        <% }); %>
+                    </ul>
+                </div>
+                <div class="tab-pane" id="tab2">
+                    <table class="collection table table-bordered table-hover">
+                        <thead>
+                        <tr>
+                            <th id="header_Pkposter">Pkposter<% if (page.orderBy == 'Pkposter') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Fkusuario">Fkusuario<% if (page.orderBy == 'Fkusuario') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Fkmascota">Fkmascota<% if (page.orderBy == 'Fkmascota') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_FktipoPoster">Fktipo Poster<% if (page.orderBy == 'FktipoPoster') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Latitud">Latitud<% if (page.orderBy == 'Latitud') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Longitud">Longitud<% if (page.orderBy == 'Longitud') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Recompensa">Recompensa<% if (page.orderBy == 'Recompensa') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_TipoMoneda">Tipo Moneda<% if (page.orderBy == 'TipoMoneda') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Descripcion">Descripcion<% if (page.orderBy == 'Descripcion') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Fecha">Fecha<% if (page.orderBy == 'Fecha') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Hora">Hora<% if (page.orderBy == 'Hora') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Imagen">Imagen<% if (page.orderBy == 'Imagen') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <% items.each(function(item) { %>
+                            <tr id="<%= _.escape(item.get('pkposter')) %>">
+                                <td><%= _.escape(item.get('pkposter') || '') %></td>
+                                <td><%= _.escape(item.get('fkusuario') || '') %></td>
+                                <td><%= _.escape(item.get('fkmascota') || '') %></td>
+                                <td><%= _.escape(item.get('fktipoPoster') || '') %></td>
+                                <td><%= _.escape(item.get('latitud') || '') %></td>
+                                <td><%= _.escape(item.get('longitud') || '') %></td>
+                                <td><%= _.escape(item.get('recompensa') || '') %></td>
+                                <td><%= _.escape(item.get('tipoMoneda') || '') %></td>
+                                <td><%= _.escape(item.get('descripcion') || '') %></td>
+                                <td><%= _.escape(item.get('fecha') || '') %></td>
+                                <td><%= _.escape(item.get('hora') || '') %></td>
+                                <td><img src="<%= _.escape(item.get('imagen') || '') %>" width="100px" style="border-radius: 5px"></td>
+                            </tr>
+                        <% }); %>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
 	</script>
 
 	<!-- underscore template for the model -->
@@ -89,22 +111,22 @@
 				<div id="fkusuarioInputContainer" class="control-group">
 					<label class="control-label" for="fkusuario">Fkusuario</label>
 					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="fkusuario" placeholder="Fkusuario" value="<%= _.escape(item.get('fkusuario') || '') %>">
-						<span class="help-inline"></span>
+                        <select class="form-control" id="fkusuario"></select>
+                        <span class="help-inline"></span>
 					</div>
 				</div>
 				<div id="fkmascotaInputContainer" class="control-group">
 					<label class="control-label" for="fkmascota">Fkmascota</label>
 					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="fkmascota" placeholder="Fkmascota" value="<%= _.escape(item.get('fkmascota') || '') %>">
-						<span class="help-inline"></span>
+                        <select class="form-control" id="fkmascota"></select>
+                        <span class="help-inline"></span>
 					</div>
 				</div>
 				<div id="fktipoPosterInputContainer" class="control-group">
 					<label class="control-label" for="fktipoPoster">Fktipo Poster</label>
 					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="fktipoPoster" placeholder="Fktipo Poster" value="<%= _.escape(item.get('fktipoPoster') || '') %>">
-						<span class="help-inline"></span>
+                        <select class="form-control" id="fktipoPoster"></select>
+                        <span class="help-inline"></span>
 					</div>
 				</div>
 				<div id="latitudInputContainer" class="control-group">
@@ -139,27 +161,6 @@
 					<label class="control-label" for="descripcion">Descripcion</label>
 					<div class="controls inline-inputs">
 						<textarea class="input-xlarge" id="descripcion" rows="3"><%= _.escape(item.get('descripcion') || '') %></textarea>
-						<span class="help-inline"></span>
-					</div>
-				</div>
-				<div id="fechaInputContainer" class="control-group">
-					<label class="control-label" for="fecha">Fecha</label>
-					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="fecha" placeholder="Fecha" value="<%= _.escape(item.get('fecha') || '') %>">
-						<span class="help-inline"></span>
-					</div>
-				</div>
-				<div id="horaInputContainer" class="control-group">
-					<label class="control-label" for="hora">Hora</label>
-					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="hora" placeholder="Hora" value="<%= _.escape(item.get('hora') || '') %>">
-						<span class="help-inline"></span>
-					</div>
-				</div>
-				<div id="estadoInputContainer" class="control-group">
-					<label class="control-label" for="estado">Estado</label>
-					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="estado" placeholder="Estado" value="<%= _.escape(item.get('estado') || '') %>">
 						<span class="help-inline"></span>
 					</div>
 				</div>

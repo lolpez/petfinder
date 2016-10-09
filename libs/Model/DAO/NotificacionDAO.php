@@ -31,7 +31,10 @@ class NotificacionDAO extends Phreezable
 	public $Hora;
 
 	/** @var int */
-	public $Fkusuario;
+	public $FkusuarioDestino;
+
+	/** @var int */
+	public $Fkposter;
 
 	/** @var int */
 	public $Visto;

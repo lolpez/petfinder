@@ -27,6 +27,9 @@ class RazaDAO extends Phreezable
 	/** @var string */
 	public $Nombre;
 
+	/** @var int */
+	public $FktipoMascota;
+
 
 
 }

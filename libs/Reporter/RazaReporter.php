@@ -24,6 +24,7 @@ class RazaReporter extends Reporter
 
 	public $Pkraza;
 	public $Nombre;
+	public $FktipoMascota;
 
 	/*
 	* GetCustomQuery returns a fully formed SQL statement.  The result columns
@@ -39,6 +40,7 @@ class RazaReporter extends Reporter
 			'custom value here...' as CustomFieldExample
 			,`raza`.`pkraza` as Pkraza
 			,`raza`.`nombre` as Nombre
+			,`raza`.`fktipo_mascota` as FktipoMascota
 		from `raza`";
 
 		// the criteria can be used or you can write your own custom logic.

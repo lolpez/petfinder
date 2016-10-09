@@ -53,6 +53,7 @@ class RazaMap implements IDaoMap, IDaoMap2
 			self::$FM = Array();
 			self::$FM["Pkraza"] = new FieldMap("Pkraza","raza","pkraza",true,FM_TYPE_INT,11,null,true);
 			self::$FM["Nombre"] = new FieldMap("Nombre","raza","nombre",false,FM_TYPE_VARCHAR,30,null,false);
+			self::$FM["FktipoMascota"] = new FieldMap("FktipoMascota","raza","fktipo_mascota",false,FM_TYPE_INT,11,null,false);
 		}
 		return self::$FM;
 	}

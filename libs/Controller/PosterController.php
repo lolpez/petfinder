@@ -1,16 +1,18 @@
 <?php
-/** @package    petfinder::Controller */
+/** @package    PETFINDER::Controller */
 
 /** import supporting libraries */
 require_once("AppBaseController.php");
 require_once("Model/Poster.php");
+require_once("Model/Mascota.php");
+require_once("Model/Imagen.php");
 
 /**
  * PosterController is the controller class for the Poster object.  The
  * controller is responsible for processing input from the user, reading/updating
  * the model as necessary and displaying the appropriate view.
  *
- * @package petfinder::Controller
+ * @package PETFINDER::Controller
  * @author ClassBuilder
  * @version 1.0
  */
@@ -39,6 +41,84 @@ class PosterController extends AppBaseController
 	{
 		$this->Render();
 	}
+
+    public function NuevoPost(){
+        /*$datos = new stdClass();
+        $datos->pkusuario = $_POST['pkusuario'];
+        $datos->pkmascota = $_POST['pkusuario'];
+
+        echo json_encode($datos);*/
+
+
+        //Insertar la mascota
+        $mascota = new Mascota($this->Phreezer);
+        $mascota->Nombre = $_POST['nombre'];
+        $mascota->Tamano = $_POST['tamano'];
+        $mascota->Color = $_POST['color'];
+        $mascota->FktipoMascota = $_POST['pktipo_mascota'];
+        $mascota->Fkraza = $_POST['pkraza'];
+        $mascota->Validate();
+        if (count($mascota->GetValidationErrors()) > 0)
+        {
+            echo 'Error al guardar mascota <br>';
+        }
+        else
+        {
+            $mascota->Save();
+            echo 'Exito al guardar una nueva mascota con los siguientes datos: ';
+            echo json_encode($mascota);
+            echo '<br>';
+        }
+
+        //Insertar poster
+        $poster = new Poster($this->Phreezer);
+        date_default_timezone_set("America/La_Paz");
+        $poster->Fkusuario = $_POST['pkusuario'];
+        $poster->Fkmascota = $mascota->Pkmascota;
+        $poster->FktipoPoster = $_POST['pktipo_poster'];
+        $poster->Latitud = $_POST['latitud'];
+        $poster->Longitud = $_POST['longitud'];
+        $poster->Recompensa = $_POST['recompensa'];
+        $poster->TipoMoneda = $_POST['tipo_moneda'];
+        $poster->Descripcion = $_POST['descripcion'];
+        $poster->Fecha = date("d/m/Y");
+        $poster->Hora = date("h:i:s");
+        $poster->Validate();
+
+        if (count($poster->GetValidationErrors()) > 0)
+        {
+            echo 'Error al guardar poster <br>';
+        }
+        else
+        {
+            $poster->Save();
+            echo 'Exito al guardar un nuevo post con los siguientes datos: ';
+            echo json_encode($poster);
+            echo '<br>';
+            //Insertar imagen
+            if ($_FILES["imagen"]['size'] > 0) {
+                $imagen = new Imagen($this->Phreezer);
+                $extencion = pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
+                $imagen->Fkposter = $poster->Pkposter;
+                $imagen->Ruta = "images/pets/".$imagen->Fkposter.".".$extencion;
+                move_uploaded_file($_FILES['imagen']['tmp_name'],  $imagen->Ruta);
+                $imagen->Validate();
+                if (count($imagen->GetValidationErrors()) > 0)
+                {
+                    echo 'Error al guardar imagen';
+                }
+                else
+                {
+                    $imagen->Save();
+                    echo 'exito al guardar imagen con los siguientes datos: ';
+                    echo json_encode($imagen);
+                    echo '<br>';
+                }
+            }else{
+                echo 'sin embargo no subio ninguna imagen por que no se selecciono ninguna';
+            }
+        }
+    }
 
 	/**
 	 * API Method queries for Poster records and render as JSON
@@ -87,7 +167,7 @@ class PosterController extends AppBaseController
 				// if page is specified, use this instead (at the expense of one extra count query)
 				$pagesize = $this->GetDefaultPageSize();
 
-				$posters = $this->Phreezer->Query('Poster',$criteria)->GetDataPage($page, $pagesize);
+				$posters = $this->Phreezer->Query('PosterReporter',$criteria)->GetDataPage($page, $pagesize);
 				$output->rows = $posters->ToObjectArray(true,$this->SimpleObjectParams());
 				$output->totalResults = $posters->TotalResults;
 				$output->totalPages = $posters->TotalPages;
@@ -97,7 +177,7 @@ class PosterController extends AppBaseController
 			else
 			{
 				// return all results
-				$posters = $this->Phreezer->Query('Poster',$criteria);
+				$posters = $this->Phreezer->Query('PosterReporter',$criteria);
 				$output->rows = $posters->ToObjectArray(true, $this->SimpleObjectParams());
 				$output->totalResults = count($output->rows);
 				$output->totalPages = 1;
@@ -152,7 +232,7 @@ class PosterController extends AppBaseController
 
 			// this is an auto-increment.  uncomment if updating is allowed
 			// $poster->Pkposter = $this->SafeGetVal($json, 'pkposter');
-
+            date_default_timezone_set("America/La_Paz");
 			$poster->Fkusuario = $this->SafeGetVal($json, 'fkusuario');
 			$poster->Fkmascota = $this->SafeGetVal($json, 'fkmascota');
 			$poster->FktipoPoster = $this->SafeGetVal($json, 'fktipoPoster');
@@ -161,9 +241,8 @@ class PosterController extends AppBaseController
 			$poster->Recompensa = $this->SafeGetVal($json, 'recompensa');
 			$poster->TipoMoneda = $this->SafeGetVal($json, 'tipoMoneda');
 			$poster->Descripcion = $this->SafeGetVal($json, 'descripcion');
-			$poster->Fecha = $this->SafeGetVal($json, 'fecha');
-			$poster->Hora = $this->SafeGetVal($json, 'hora');
-			$poster->Estado = $this->SafeGetVal($json, 'estado');
+			$poster->Fecha = date("d/m/Y");
+			$poster->Hora = date("h:i:s");
 
 			$poster->Validate();
 			$errors = $poster->GetValidationErrors();
@@ -207,7 +286,7 @@ class PosterController extends AppBaseController
 
 			// this is a primary key.  uncomment if updating is allowed
 			// $poster->Pkposter = $this->SafeGetVal($json, 'pkposter', $poster->Pkposter);
-
+            date_default_timezone_set("America/La_Paz");
 			$poster->Fkusuario = $this->SafeGetVal($json, 'fkusuario', $poster->Fkusuario);
 			$poster->Fkmascota = $this->SafeGetVal($json, 'fkmascota', $poster->Fkmascota);
 			$poster->FktipoPoster = $this->SafeGetVal($json, 'fktipoPoster', $poster->FktipoPoster);
@@ -216,9 +295,8 @@ class PosterController extends AppBaseController
 			$poster->Recompensa = $this->SafeGetVal($json, 'recompensa', $poster->Recompensa);
 			$poster->TipoMoneda = $this->SafeGetVal($json, 'tipoMoneda', $poster->TipoMoneda);
 			$poster->Descripcion = $this->SafeGetVal($json, 'descripcion', $poster->Descripcion);
-			$poster->Fecha = $this->SafeGetVal($json, 'fecha', $poster->Fecha);
-			$poster->Hora = $this->SafeGetVal($json, 'hora', $poster->Hora);
-			$poster->Estado = $this->SafeGetVal($json, 'estado', $poster->Estado);
+            $poster->Fecha = date("d/m/Y");
+            $poster->Hora = date("h:i:s");
 
 			$poster->Validate();
 			$errors = $poster->GetValidationErrors();

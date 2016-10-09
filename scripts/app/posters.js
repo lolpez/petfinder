@@ -17,7 +17,6 @@ var page = {
 	fetchParams: { filter: '', orderBy: '', orderDesc: '', page: 1 },
 	fetchInProgress: false,
 	dialogIsOpen: false,
-
 	/**
 	 *
 	 */
@@ -224,6 +223,67 @@ var page = {
 		$('.timepicker-default').timepicker({ defaultTime: 'value' });
 
 
+        // poblar el combobox con las usuarios
+        // TODO: load only the selected value, then fetch all options when the drop-down is clicked
+        var usuarioValues = new model.UsuarioCollection();
+        usuarioValues.fetch({
+            success: function(c){
+                var dd = $('#fkusuario');
+                c.forEach(function(item,index)
+                {
+                    dd.append(app.getOptionHtml(
+                        item.get('pkusuario'),
+                        item.get('nombre'),
+                        page.poster.get('fkusuario') == item.get('pkusuario')
+                    ));
+                });
+            },
+            error: function(collection,response,scope){
+                app.appendAlert(app.getErrorMessage(response), 'alert-error',0,'modelAlert');
+            }
+        });
+
+        // poblar el combobox con las mascotas
+        // TODO: load only the selected value, then fetch all options when the drop-down is clicked
+        var mascotaValues = new model.MascotaCollection();
+        mascotaValues.fetch({
+            success: function(c){
+                var dd = $('#fkmascota');
+                c.forEach(function(item,index)
+                {
+                    dd.append(app.getOptionHtml(
+                        item.get('pkmascota'),
+                        item.get('nombre'),
+                        page.poster.get('fkmascota') == item.get('pkmascota')
+                    ));
+                });
+            },
+            error: function(collection,response,scope){
+                app.appendAlert(app.getErrorMessage(response), 'alert-error',0,'modelAlert');
+            }
+        });
+
+        // poblar el combobox con los tipos de poster
+        // TODO: load only the selected value, then fetch all options when the drop-down is clicked
+        var tipo_posterValues = new model.TipoPosterCollection();
+        tipo_posterValues.fetch({
+            success: function(c){
+                var dd = $('#fktipoPoster');
+                c.forEach(function(item,index)
+                {
+                    dd.append(app.getOptionHtml(
+                        item.get('pktipoPoster'),
+                        item.get('nombre'),
+                        page.poster.get('fktipoPoster') == item.get('pktipoPoster')
+                    ));
+                });
+            },
+            error: function(collection,response,scope){
+                app.appendAlert(app.getErrorMessage(response), 'alert-error',0,'modelAlert');
+            }
+        });
+
+
 		if (showDeleteButton) {
 			// attach click handlers to the delete buttons
 
@@ -264,17 +324,14 @@ var page = {
 
 		page.poster.save({
 
-			'fkusuario': $('input#fkusuario').val(),
-			'fkmascota': $('input#fkmascota').val(),
-			'fktipoPoster': $('input#fktipoPoster').val(),
+			'fkusuario': $('select#fkusuario').val(),
+			'fkmascota': $('select#fkmascota').val(),
+			'fktipoPoster': $('select#fktipoPoster').val(),
 			'latitud': $('input#latitud').val(),
 			'longitud': $('input#longitud').val(),
 			'recompensa': $('input#recompensa').val(),
 			'tipoMoneda': $('input#tipoMoneda').val(),
-			'descripcion': $('textarea#descripcion').val(),
-			'fecha': $('input#fecha').val(),
-			'hora': $('input#hora').val(),
-			'estado': $('input#estado').val()
+			'descripcion': $('textarea#descripcion').val()
 		}, {
 			wait: true,
 			success: function(){

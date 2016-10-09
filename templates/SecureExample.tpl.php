@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title','petfinder Secure Example');
+	$this->assign('title','PETFINDER Secure Example');
 	$this->assign('nav','secureexample');
 
 	$this->display('_Header.tpl.php');

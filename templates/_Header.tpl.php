@@ -2,11 +2,10 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<meta http-equiv="X-Frame-Options" content="deny">
 		<base href="<?php $this->eprint($this->ROOT_URL); ?>" />
 		<title><?php $this->eprint($this->title); ?></title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="description" content="petfinder" />
+		<meta name="description" content="PETFINDER" />
 		<meta name="author" content="phreeze builder | phreeze.com" />
 
 		<!-- Le styles -->
@@ -34,7 +33,7 @@
 
 		<script type="text/javascript" src="scripts/libs/LAB.min.js"></script>
 		<script type="text/javascript">
-			$LAB.script("//code.jquery.com/jquery-1.8.2.min.js").wait()
+			$LAB.script("bootstrap/jquery/dist/jquery.min.js").wait()
 				.script("bootstrap/js/bootstrap.min.js")
 				.script("bootstrap/js/bootstrap-datepicker.js")
 				.script("bootstrap/js/bootstrap-timepicker.js")
@@ -59,7 +58,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</a>
-						<a class="brand" href="./">petfinder</a>
+						<a class="brand" href="./">PETFINDER</a>
 						<div class="nav-collapse collapse">
 							<ul class="nav">
 								<li <?php if ($this->nav=='imagenes') { echo 'class="active"'; } ?>><a href="./imagenes">Imagenes</a></li>

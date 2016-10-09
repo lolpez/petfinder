@@ -24,11 +24,11 @@ class ImagenDAO extends Phreezable
 	/** @var int */
 	public $Pkimagen;
 
-	/** @var int */
+	/** @var string */
 	public $Ruta;
 
 	/** @var int */
-	public $Fkmascota;
+	public $Fkposter;
 
 
 

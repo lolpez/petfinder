@@ -24,7 +24,7 @@ class ImagenReporter extends Reporter
 
 	public $Pkimagen;
 	public $Ruta;
-	public $Fkmascota;
+	public $Fkposter;
 
 	/*
 	* GetCustomQuery returns a fully formed SQL statement.  The result columns
@@ -40,7 +40,7 @@ class ImagenReporter extends Reporter
 			'custom value here...' as CustomFieldExample
 			,`imagen`.`pkimagen` as Pkimagen
 			,`imagen`.`ruta` as Ruta
-			,`imagen`.`fkmascota` as Fkmascota
+			,`imagen`.`fkposter` as Fkposter
 		from `imagen`";
 
 		// the criteria can be used or you can write your own custom logic.

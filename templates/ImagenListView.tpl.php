@@ -1,5 +1,5 @@
 <?php
-	$this->assign('title','petfinder | Imagenes');
+	$this->assign('title','PETFINDER | Imagenes');
 	$this->assign('nav','imagenes');
 
 	$this->display('_Header.tpl.php');
@@ -36,7 +36,7 @@
 			<tr>
 				<th id="header_Pkimagen">Pkimagen<% if (page.orderBy == 'Pkimagen') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Ruta">Ruta<% if (page.orderBy == 'Ruta') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-				<th id="header_Fkmascota">Fkmascota<% if (page.orderBy == 'Fkmascota') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+				<th id="header_Fkposter">Fkposter<% if (page.orderBy == 'Fkposter') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 			</tr>
 		</thead>
 		<tbody>
@@ -44,7 +44,7 @@
 			<tr id="<%= _.escape(item.get('pkimagen')) %>">
 				<td><%= _.escape(item.get('pkimagen') || '') %></td>
 				<td><%= _.escape(item.get('ruta') || '') %></td>
-				<td><%= _.escape(item.get('fkmascota') || '') %></td>
+				<td><%= _.escape(item.get('fkposter') || '') %></td>
 			</tr>
 		<% }); %>
 		</tbody>
@@ -71,10 +71,10 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
-				<div id="fkmascotaInputContainer" class="control-group">
-					<label class="control-label" for="fkmascota">Fkmascota</label>
+				<div id="fkposterInputContainer" class="control-group">
+					<label class="control-label" for="fkposter">Fkposter</label>
 					<div class="controls inline-inputs">
-						<input type="text" class="input-xlarge" id="fkmascota" placeholder="Fkmascota" value="<%= _.escape(item.get('fkmascota') || '') %>">
+						<input type="text" class="input-xlarge" id="fkposter" placeholder="Fkposter" value="<%= _.escape(item.get('fkposter') || '') %>">
 						<span class="help-inline"></span>
 					</div>
 				</div>

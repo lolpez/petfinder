@@ -51,21 +51,21 @@ class ImagenCriteriaDAO extends Criteria
 	public $Ruta_IsEmpty;
 	public $Ruta_BitwiseOr;
 	public $Ruta_BitwiseAnd;
-	public $Fkmascota_Equals;
-	public $Fkmascota_NotEquals;
-	public $Fkmascota_IsLike;
-	public $Fkmascota_IsNotLike;
-	public $Fkmascota_BeginsWith;
-	public $Fkmascota_EndsWith;
-	public $Fkmascota_GreaterThan;
-	public $Fkmascota_GreaterThanOrEqual;
-	public $Fkmascota_LessThan;
-	public $Fkmascota_LessThanOrEqual;
-	public $Fkmascota_In;
-	public $Fkmascota_IsNotEmpty;
-	public $Fkmascota_IsEmpty;
-	public $Fkmascota_BitwiseOr;
-	public $Fkmascota_BitwiseAnd;
+	public $Fkposter_Equals;
+	public $Fkposter_NotEquals;
+	public $Fkposter_IsLike;
+	public $Fkposter_IsNotLike;
+	public $Fkposter_BeginsWith;
+	public $Fkposter_EndsWith;
+	public $Fkposter_GreaterThan;
+	public $Fkposter_GreaterThanOrEqual;
+	public $Fkposter_LessThan;
+	public $Fkposter_LessThanOrEqual;
+	public $Fkposter_In;
+	public $Fkposter_IsNotEmpty;
+	public $Fkposter_IsEmpty;
+	public $Fkposter_BitwiseOr;
+	public $Fkposter_BitwiseAnd;
 
 }
 

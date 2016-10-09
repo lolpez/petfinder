@@ -26,7 +26,7 @@ GlobalConfig::$CONNECTION_SETTING->Multibyte = true;
 // GlobalConfig::$CONNECTION_SETTING->BootstrapSQL = "SET SQL_BIG_SELECTS=1";
 
 /** the root url of the application with trailing slash, for example http://localhost/petfinder/ */
-GlobalConfig::$ROOT_URL = RequestUtil::GetServerRootUrl() . 'petfinder/';
+GlobalConfig::$ROOT_URL = RequestUtil::GetServerRootUrl() . 'http://findmypetweb-lolpez.rhcloud.com/';
 
 /** timezone */
 // date_default_timezone_set("UTC");

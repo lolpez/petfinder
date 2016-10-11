@@ -1,6 +1,6 @@
 <?php
 /**
- * @package PETFINDER
+ * @package SPECTROLAB
  *
  * APPLICATION-WIDE CONFIGURATION SETTINGS
  *
@@ -23,20 +23,20 @@ if (!GlobalConfig::$APP_ROOT) GlobalConfig::$APP_ROOT = realpath("./");
 /**
  * check is needed to ensure asp_tags is not enabled
  */
-if (ini_get('asp_tags')) 
-	die('<h3>Server Configuration Problem: asp_tags is enabled, but is not compatible with Savant.</h3>'
-	. '<p>You can disable asp_tags in .htaccess, php.ini or generate your app with another template engine such as Smarty.</p>');
+if (ini_get('asp_tags'))
+    die('<h3>Server Configuration Problem: asp_tags is enabled, but is not compatible with Savant.</h3>'
+        . '<p>You can disable asp_tags in .htaccess, php.ini or generate your app with another template engine such as Smarty.</p>');
 
 /**
  * INCLUDE PATH
  * Adjust the include path as necessary so PHP can locate required libraries
  */
 set_include_path(
-		GlobalConfig::$APP_ROOT . '/libs/' . PATH_SEPARATOR .
-		'phar://' . GlobalConfig::$APP_ROOT . '/libs/phreeze-3.3.8.phar' . PATH_SEPARATOR .
-		GlobalConfig::$APP_ROOT . '/../libs/phreeze' . PATH_SEPARATOR .
-		GlobalConfig::$APP_ROOT . '/vendor/phreeze/phreeze/libs/' . PATH_SEPARATOR .
-		get_include_path()
+    GlobalConfig::$APP_ROOT . '/libs/' . PATH_SEPARATOR .
+    'phar://' . GlobalConfig::$APP_ROOT . '/libs/phreeze-3.3.8.phar' . PATH_SEPARATOR .
+    GlobalConfig::$APP_ROOT . '/phreeze/libs' . PATH_SEPARATOR .
+    GlobalConfig::$APP_ROOT . '/vendor/phreeze/phreeze/libs/' . PATH_SEPARATOR .
+    get_include_path()
 );
 
 /**
@@ -61,7 +61,7 @@ require_once "App/ExampleUser.php";
  */
 require_once 'verysimple/Phreeze/SavantRenderEngine.php';
 GlobalConfig::$TEMPLATE_ENGINE = 'SavantRenderEngine';
-GlobalConfig::$TEMPLATE_PATH = GlobalConfig::$APP_ROOT . '/templates/';
+GlobalConfig::$TEMPLATE_PATH = GlobalConfig::$APP_ROOT . '/libs/View/';
 
 /**
  * ROUTE MAP
@@ -72,7 +72,8 @@ GlobalConfig::$TEMPLATE_PATH = GlobalConfig::$APP_ROOT . '/templates/';
 GlobalConfig::$ROUTE_MAP = array(
 
     //Web Service Personalizado
-    'POST:web_service/poster/nuevo' => array('route' => 'Poster.NuevoPost'),
+    'POST:web_service/poster/nuevo' => array('route' => 'Poster.Guardar'),
+    'POST:web_service/usuario/nuevo' => array('route' => 'Usuario.Guardar'),
     'GET:web_service/tipo_mascota' => array('route' => 'TipoMascota.Listar'),
     'GET:web_service/raza' => array('route' => 'Raza.Listar'),
     'GET:web_service/raza/(:num)' => array('route' => 'Raza.ObtenerRazas', 'params' => array('pktipo_mascota' => 2)),
@@ -117,6 +118,7 @@ GlobalConfig::$ROUTE_MAP = array(
 		
 	// Poster
 	'GET:posters' => array('route' => 'Poster.ListView'),
+	'GET:poster/nuevo' => array('route' => 'Poster.Nuevo'),
 	'GET:poster/(:num)' => array('route' => 'Poster.SingleView', 'params' => array('pkposter' => 1)),
 	'GET:api/posters' => array('route' => 'Poster.Query'),
 	'POST:api/poster' => array('route' => 'Poster.Create'),
@@ -173,4 +175,10 @@ GlobalConfig::$ROUTE_MAP = array(
  * Alternatively, you can copy/paste to a specific page for one-time eager fetching
  * If you paste into a controller method, replace $G_PHREEZER with $this->Phreezer
  */
+// $GlobalConfig->GetInstance()->GetPhreezer()->SetLoadType("DetalleTipoServicio","detalle_tipo_servicio_ibfk_1",KM_LOAD_EAGER); // KM_LOAD_INNER | KM_LOAD_EAGER | KM_LOAD_LAZY
+// $GlobalConfig->GetInstance()->GetPhreezer()->SetLoadType("DetalleTipoServicio","detalle_tipo_servicio_ibfk_2",KM_LOAD_EAGER); // KM_LOAD_INNER | KM_LOAD_EAGER | KM_LOAD_LAZY
+// $GlobalConfig->GetInstance()->GetPhreezer()->SetLoadType("Parametro","parametro_ibfk_1",KM_LOAD_EAGER); // KM_LOAD_INNER | KM_LOAD_EAGER | KM_LOAD_LAZY
+// $GlobalConfig->GetInstance()->GetPhreezer()->SetLoadType("Proforma","proforma_ibfk_1",KM_LOAD_EAGER); // KM_LOAD_INNER | KM_LOAD_EAGER | KM_LOAD_LAZY
+// $GlobalConfig->GetInstance()->GetPhreezer()->SetLoadType("Proforma","proforma_ibfk_2",KM_LOAD_EAGER); // KM_LOAD_INNER | KM_LOAD_EAGER | KM_LOAD_LAZY
+// $GlobalConfig->GetInstance()->GetPhreezer()->SetLoadType("Usuario","usuario_ibfk_1",KM_LOAD_EAGER); // KM_LOAD_INNER | KM_LOAD_EAGER | KM_LOAD_LAZY
 ?>

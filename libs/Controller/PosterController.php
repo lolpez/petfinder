@@ -47,7 +47,14 @@ class PosterController extends AppBaseController
         echo json_encode($this->Phreezer->Query('PosterReporter')->ToObjectArray(true, $this->SimpleObjectParams()));
     }
 
-    public function NuevoPost(){
+    public function Nuevo(){
+        $this->Assign('tipo_mascotas',$this->Phreezer->Query('TipoMascota')->ToObjectArray(true, $this->SimpleObjectParams()));
+        $this->Assign('razas',$this->Phreezer->Query('Raza')->ToObjectArray(true, $this->SimpleObjectParams()));
+        $this->Assign('tipo_posters',$this->Phreezer->Query('TipoPoster')->ToObjectArray(true, $this->SimpleObjectParams()));
+        $this->Render('PosterNuevo');
+    }
+
+    public function Guardar(){
 		//echo json_encode($_POST);
 		//Insertar la mascota
 	    $mascota = new Mascota($this->Phreezer);
@@ -84,6 +91,8 @@ class PosterController extends AppBaseController
 
         if (count($poster->GetValidationErrors()) > 0)
         {
+            //Rollback
+            $mascota->Delete();
             echo 0;
         }
         else
@@ -95,7 +104,7 @@ class PosterController extends AppBaseController
 			if (isset($_FILES["imagen"])){
 				if ($_FILES["imagen"]['size'] > 0) {
 					$extencion = pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
-					$imagen->Ruta = "images/pets/".$imagen->Fkposter.".".$extencion;
+					$imagen->Ruta = "resources/images/pets/".$imagen->Fkposter.".".$extencion;
 					move_uploaded_file($_FILES['imagen']['tmp_name'],  $imagen->Ruta);
 				}else{
 					$imagen->ruta = '';
@@ -106,6 +115,9 @@ class PosterController extends AppBaseController
 			$imagen->Validate();
 			if (count($imagen->GetValidationErrors()) > 0)
 			{
+                //Rollback
+                $poster->Delete();
+                $mascota->Delete();
 				echo 0;
 			}
 			else

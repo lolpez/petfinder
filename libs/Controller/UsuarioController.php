@@ -40,6 +40,26 @@ class UsuarioController extends AppBaseController
 		$this->Render();
 	}
 
+    public function Guardar(){
+        //Insertar poster
+        $usuario = new Usuario($this->Phreezer);
+        $usuario->Nombre = $_POST['nombre'];
+        $usuario->GcmId = $_POST['gcm_id'];
+        $usuario->Email = $_POST['email'];
+        $usuario->Nrotelefono = $_POST['nro_telefono'];
+        $usuario->IdFacebook = $_POST['id_facebook'];
+        $usuario->Validate();
+        if (count($usuario->GetValidationErrors()) > 0)
+        {
+            echo 0;
+        }
+        else
+        {
+            $usuario->Save();
+        }
+        echo $usuario->Pkusuario;
+    }
+
 	/**
 	 * API Method queries for Usuario records and render as JSON
 	 */
@@ -52,7 +72,7 @@ class UsuarioController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Pkusuario,Nombre'
+				new CriteriaFilter('Pkusuario,Nombre,GcmId,Email,Nrotelefono,IdFacebook'
 				, '%'.$filter.'%')
 			);
 
@@ -154,6 +174,10 @@ class UsuarioController extends AppBaseController
 			// $usuario->Pkusuario = $this->SafeGetVal($json, 'pkusuario');
 
 			$usuario->Nombre = $this->SafeGetVal($json, 'nombre');
+			$usuario->GcmId = $this->SafeGetVal($json, 'gcmId');
+			$usuario->Email = $this->SafeGetVal($json, 'email');
+			$usuario->Nrotelefono = $this->SafeGetVal($json, 'nrotelefono');
+			$usuario->IdFacebook = $this->SafeGetVal($json, 'idFacebook');
 
 			$usuario->Validate();
 			$errors = $usuario->GetValidationErrors();
@@ -199,6 +223,10 @@ class UsuarioController extends AppBaseController
 			// $usuario->Pkusuario = $this->SafeGetVal($json, 'pkusuario', $usuario->Pkusuario);
 
 			$usuario->Nombre = $this->SafeGetVal($json, 'nombre', $usuario->Nombre);
+			$usuario->GcmId = $this->SafeGetVal($json, 'gcmId', $usuario->GcmId);
+			$usuario->Email = $this->SafeGetVal($json, 'email', $usuario->Email);
+			$usuario->Nrotelefono = $this->SafeGetVal($json, 'nrotelefono', $usuario->Nrotelefono);
+			$usuario->IdFacebook = $this->SafeGetVal($json, 'idFacebook', $usuario->IdFacebook);
 
 			$usuario->Validate();
 			$errors = $usuario->GetValidationErrors();

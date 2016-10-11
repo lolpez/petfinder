@@ -27,6 +27,18 @@ class UsuarioDAO extends Phreezable
 	/** @var string */
 	public $Nombre;
 
+	/** @var string */
+	public $GcmId;
+
+	/** @var string */
+	public $Email;
+
+	/** @var string */
+	public $Nrotelefono;
+
+	/** @var string */
+	public $IdFacebook;
+
 
 
 }

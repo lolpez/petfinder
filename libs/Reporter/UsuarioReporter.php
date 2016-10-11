@@ -24,6 +24,10 @@ class UsuarioReporter extends Reporter
 
 	public $Pkusuario;
 	public $Nombre;
+	public $GcmId;
+	public $Email;
+	public $Nrotelefono;
+	public $IdFacebook;
 
 	/*
 	* GetCustomQuery returns a fully formed SQL statement.  The result columns
@@ -39,6 +43,10 @@ class UsuarioReporter extends Reporter
 			'custom value here...' as CustomFieldExample
 			,`usuario`.`pkusuario` as Pkusuario
 			,`usuario`.`nombre` as Nombre
+			,`usuario`.`gcm_id` as GcmId
+			,`usuario`.`email` as Email
+			,`usuario`.`nroTelefono` as Nrotelefono
+			,`usuario`.`id_facebook` as IdFacebook
 		from `usuario`";
 
 		// the criteria can be used or you can write your own custom logic.

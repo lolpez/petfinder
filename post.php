@@ -1,7 +1,12 @@
-<form action="web_service/poster" method="post" enctype="multipart/form-data">
+<form action="web_service/poster/nuevo" method="post" enctype="multipart/form-data">
     <input type="hidden" name="pkusuario" value="1">
     Nombre de la mascota: <input type="text" name="nombre"><br>
     Tamano: <input type="text" name="tamano"><br>
+    Genero: <select type="text" name="genero">
+                <option value="macho">macho</option>
+                <option value="hembra">hembra</option>
+                <option value="indeterminado">indeterminado</option>
+            </select><br>
     Color: <input type="text" name="color"><br>
     Tipo mascota: <input type="text" name="pktipo_mascota"><br>
     Raza: <input type="text" name="pkraza"><br>

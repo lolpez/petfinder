@@ -44,6 +44,12 @@ class RazaController extends AppBaseController
         echo json_encode($this->Phreezer->Query('Raza')->ToObjectArray(true, $this->SimpleObjectParams()));
     }
 
+    public function ObtenerRazas(){
+        $criteria = new RazaCriteria();
+        $criteria->FktipoMascota_Equals = $this->GetRouter()->GetUrlParam('pktipo_mascota');
+        echo json_encode($this->Phreezer->Query('Raza',$criteria)->ToObjectArray(true, $this->SimpleObjectParams()));
+    }
+
 	/**
 	 * API Method queries for Raza records and render as JSON
 	 */

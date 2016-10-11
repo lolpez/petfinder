@@ -42,11 +42,17 @@ class PosterController extends AppBaseController
 		$this->Render();
 	}
 
+    public function Listar()
+    {
+        echo json_encode($this->Phreezer->Query('PosterReporter')->ToObjectArray(true, $this->SimpleObjectParams()));
+    }
+
     public function NuevoPost(){
 		//echo json_encode($_POST);
 		//Insertar la mascota
 	    $mascota = new Mascota($this->Phreezer);
         $mascota->Nombre = $_POST['nombre'];
+        $mascota->Genero = $_POST['genero'];
         $mascota->Tamano = $_POST['tamano'];
         $mascota->Color = $_POST['color'];
         $mascota->FktipoMascota = $_POST['pktipo_mascota'];
@@ -122,7 +128,7 @@ class PosterController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Pkposter,Fkusuario,Fkmascota,FktipoPoster,Latitud,Longitud,Recompensa,TipoMoneda,Descripcion,Fecha,Hora,Estado'
+				new CriteriaFilter('Pkposter,Fkusuario,Fkmascota,FktipoPoster,Latitud,Longitud,Recompensa,TipoMoneda,Descripcion,Fecha,Hora,Mascota_nombre,Mascota_genero,Mascota_tamano,Mascota_color,Mascota_estado,TipoMascota_nombre,Raza_nombre,Usuario_nombre'
 				, '%'.$filter.'%')
 			);
 

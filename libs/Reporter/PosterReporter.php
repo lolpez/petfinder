@@ -21,6 +21,14 @@ class PosterReporter extends Reporter
 	// the properties in this class must match the columns returned by GetCustomQuery().
 	// 'CustomFieldExample' is an example that is not part of the `poster` table
 	public $Imagen;
+    public $Mascota_nombre;
+    public $Mascota_genero;
+    public $Mascota_tamano;
+    public $Mascota_color;
+    public $Mascota_estado;
+    public $TipoMascota_nombre;
+    public $Raza_nombre;
+    public $Usuario_nombre;
 
 	public $Pkposter;
 	public $Fkusuario;
@@ -47,6 +55,15 @@ class PosterReporter extends Reporter
 	{
 		$sql = "select
 			`imagen`.`ruta` as Imagen
+			,`mascota`.`nombre` as Mascota_nombre
+			,`mascota`.`genero` as Mascota_genero
+			,`mascota`.`tamano` as Mascota_tamano
+			,`mascota`.`color` as Mascota_color
+			,`mascota`.`estado` as Mascota_estado
+			,`tipo_mascota`.`nombre` as TipoMascota_nombre
+			,`raza`.`nombre` as Raza_nombre
+			,`usuario`.`nombre` as Usuario_nombre
+
 			,`poster`.`pkposter` as Pkposter
 			,`poster`.`fkusuario` as Fkusuario
 			,`poster`.`fkmascota` as Fkmascota
@@ -60,6 +77,10 @@ class PosterReporter extends Reporter
 			,`poster`.`hora` as Hora
 		from `poster`
         inner join `imagen` on `poster`.`pkposter`=`imagen`.`fkposter`
+        inner join `mascota` on `poster`.`fkmascota`=`mascota`.`pkmascota`
+        inner join `raza` on `mascota`.`fkraza`=`raza`.`pkraza`
+        inner join `tipo_mascota` on `mascota`.`fktipo_mascota`=`tipo_mascota`.`pktipo_mascota`
+        inner join `usuario` on `poster`.`fkusuario`=`usuario`.`pkusuario`
         ";
 
 		// the criteria can be used or you can write your own custom logic.
@@ -81,14 +102,20 @@ class PosterReporter extends Reporter
 	*/
 	static function GetCustomCountQuery($criteria)
 	{
-		$sql = "select count(1) as counter from `poster`";
-
+		$sql = "select count(1) as counter
+                from `poster`
+                inner join `imagen` on `poster`.`pkposter`=`imagen`.`fkposter`
+                inner join `mascota` on `poster`.`fkmascota`=`mascota`.`pkmascota`
+                inner join `raza` on `mascota`.`fkraza`=`raza`.`pkraza`
+                inner join `tipo_mascota` on `mascota`.`fktipo_mascota`=`tipo_mascota`.`pktipo_mascota`
+                inner join `usuario` on `poster`.`fkusuario`=`usuario`.`pkusuario`
+              ";
 		// the criteria can be used or you can write your own custom logic.
 		// be sure to escape any user input with $criteria->Escape()
 		$sql .= $criteria->GetWhere();
 
 		return $sql;
-	}
+    }
 }
 
 ?>

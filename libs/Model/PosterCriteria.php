@@ -25,20 +25,31 @@ class PosterCriteria extends PosterCriteriaDAO
 	 * 
 	 * @see Criteria::GetFieldFromProp()
 	 */
-	/*
+
 	public function GetFieldFromProp($propname)
 	{
-		switch($propname)
-		{
-			 case 'CustomProp1':
-			 	return 'my_db_column_1';
-			 case 'CustomProp2':
-			 	return 'my_db_column_2';
-			default:
-				return parent::GetFieldFromProp($propname);
-		}
+		switch ($propname) {
+            case 'Mascota_nombre':
+                return 'mascota.nombre';
+            case 'Mascota_genero':
+                return 'mascota.genero';
+            case 'Mascota_tamano':
+                return 'mascota.tamano';
+            case 'Mascota_color':
+                return 'mascota.color';
+            case 'Mascota_estado':
+                return 'mascota.estado';
+            case 'TipoMascota_nombre':
+                return 'tipo_mascota.nombre';
+            case 'Raza_nombre':
+                return 'raza.nombre';
+            case 'Usuario_nombre':
+                return 'usuario.nombre';
+            default:
+                return parent::GetFieldFromProp($propname);
+        }
 	}
-	*/
+
 	
 	/**
 	 * For custom query logic, you may override OnPrepare and set the $this->_where to whatever

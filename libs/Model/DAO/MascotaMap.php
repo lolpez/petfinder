@@ -53,11 +53,13 @@ class MascotaMap implements IDaoMap, IDaoMap2
 			self::$FM = Array();
 			self::$FM["Pkmascota"] = new FieldMap("Pkmascota","mascota","pkmascota",true,FM_TYPE_INT,11,null,true);
 			self::$FM["Nombre"] = new FieldMap("Nombre","mascota","nombre",false,FM_TYPE_VARCHAR,30,null,false);
+            self::$FM["Genero"] = new FieldMap("Genero","mascota","genero",false,FM_TYPE_VARCHAR,15,null,false);
 			self::$FM["Tamano"] = new FieldMap("Tamano","mascota","tamano",false,FM_TYPE_VARCHAR,30,null,false);
 			self::$FM["Color"] = new FieldMap("Color","mascota","color",false,FM_TYPE_VARCHAR,30,null,false);
 			self::$FM["FktipoMascota"] = new FieldMap("FktipoMascota","mascota","fktipo_mascota",false,FM_TYPE_INT,11,null,false);
 			self::$FM["Fkraza"] = new FieldMap("Fkraza","mascota","fkraza",false,FM_TYPE_INT,11,null,false);
-			self::$FM["Estado"] = new FieldMap("Estado","mascota","estado",false,FM_TYPE_INT,11,"1",false);
+			self::$FM["Estado"] = new FieldMap("Estado","mascota","estado",false,FM_TYPE_INT,11,"0",false);
+
 		}
 		return self::$FM;
 	}

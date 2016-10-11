@@ -14,7 +14,7 @@ var model = {};
  * long polling duration in miliseconds.  (5000 = recommended, 0 = disabled)
  * warning: setting this to a low number will increase server load
  */
-model.longPollDuration = 5000;
+model.longPollDuration = 0;
 
 /**
  * whether to refresh the collection immediately after a model is updated
@@ -164,6 +164,7 @@ model.MascotaModel = Backbone.Model.extend({
 	idAttribute: 'pkmascota',
 	pkmascota: '',
 	nombre: '',
+	genero: '',
 	tamano: '',
 	color: '',
 	fktipoMascota: '',
@@ -172,6 +173,7 @@ model.MascotaModel = Backbone.Model.extend({
 	defaults: {
 		'pkmascota': null,
 		'nombre': '',
+		'genero': '',
 		'tamano': '',
 		'color': '',
 		'fktipoMascota': '',
@@ -236,7 +238,15 @@ model.PosterModel = Backbone.Model.extend({
 	fecha: '',
 	hora: '',
 	imagen: '',
-	defaults: {
+    mascota_nombre : '',
+    mascota_genero : '',
+    mascota_tamano : '',
+    mascota_color : '',
+    mascota_estado : '',
+    tipoMascota_nombre : '',
+    raza_nombre : '',
+    usuario_nombre : '',
+    defaults: {
 		'pkposter': null,
 		'fkusuario': '',
 		'fkmascota': '',
@@ -248,7 +258,15 @@ model.PosterModel = Backbone.Model.extend({
 		'descripcion': '',
 		'fecha': '',
 		'hora': '',
-		'imagen': ''
+		'imagen': '',
+        'mascota_nombre' : '',
+        'mascota_genero' : '',
+        'mascota_tamano' : '',
+        'mascota_color' : '',
+        'mascota_estado' : '',
+        'tipoMascota_nombre' : '',
+        'raza_nombre' : '',
+        'usuario_nombre' : ''
 	}
 });
 

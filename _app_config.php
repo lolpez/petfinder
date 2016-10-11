@@ -72,9 +72,11 @@ GlobalConfig::$TEMPLATE_PATH = GlobalConfig::$APP_ROOT . '/templates/';
 GlobalConfig::$ROUTE_MAP = array(
 
     //Web Service Personalizado
-    'POST:web_service/poster' => array('route' => 'Poster.NuevoPost'),
+    'POST:web_service/poster/nuevo' => array('route' => 'Poster.NuevoPost'),
     'GET:web_service/tipo_mascota' => array('route' => 'TipoMascota.Listar'),
     'GET:web_service/raza' => array('route' => 'Raza.Listar'),
+    'GET:web_service/raza/(:num)' => array('route' => 'Raza.ObtenerRazas', 'params' => array('pktipo_mascota' => 2)),
+    'GET:web_service/poster' => array('route' => 'Poster.Listar'),
 
 	// default controller when no route specified
 	'GET:' => array('route' => 'Default.Home'),

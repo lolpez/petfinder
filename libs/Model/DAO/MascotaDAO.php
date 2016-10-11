@@ -27,6 +27,9 @@ class MascotaDAO extends Phreezable
 	/** @var string */
 	public $Nombre;
 
+    /** @var string */
+    public $Genero;
+
 	/** @var string */
 	public $Tamano;
 
@@ -41,8 +44,6 @@ class MascotaDAO extends Phreezable
 
 	/** @var int */
 	public $Estado;
-
-
 
 }
 ?>

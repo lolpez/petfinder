@@ -1,7 +1,6 @@
 <?php
 	$this->assign('title','PETFINDER | Posters');
 	$this->assign('nav','posters');
-
 	$this->display('_Header.tpl.php');
 ?>
 
@@ -51,8 +50,13 @@
 									(Sin imagen)
 								<% } %>                                    
                                     <div class="caption">
-                                        <h3><%= _.escape(item.get('fkmascota') || '') %></h3>
-                                        <p><%= _.escape(item.get('descripcion') || '') %></p>
+                                        <h3><%= _.escape(item.get('mascota_nombre') || '') %></h3>
+                                        <h4><%= _.escape(item.get('tipoMascota_nombre')+ ' ' + item.get('mascota_tamano')+ ' ' +item.get('raza_nombre') || '') %></h4>
+                                        <h5>Dueño: <%= _.escape(item.get('usuario_nombre') || '') %></h5>
+                                        <h5>Genero: <%= _.escape(item.get('mascota_genero') || '') %></h5>
+                                        <h5>Color: <%= _.escape(item.get('mascota_color') || '') %></h5>
+                                        <p>Descripcion: <%= _.escape(item.get('descripcion') || '') %></p>
+                                        <p class="muted"><small><%= _.escape(item.get('fecha')+ ' ' +item.get('hora') || '') %></small></p>
                                     </div>
                                 </div>
                             </li>
@@ -63,14 +67,11 @@
                     <table class="collection table table-bordered table-hover">
                         <thead>
                         <tr>
-                            <th id="header_Pkposter">Pkposter<% if (page.orderBy == 'Pkposter') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-                            <th id="header_Fkusuario">Fkusuario<% if (page.orderBy == 'Fkusuario') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-                            <th id="header_Fkmascota">Fkmascota<% if (page.orderBy == 'Fkmascota') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-                            <th id="header_FktipoPoster">Fktipo Poster<% if (page.orderBy == 'FktipoPoster') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Pkposter">ID Poster<% if (page.orderBy == 'Pkposter') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Fkusuario">Usuario<% if (page.orderBy == 'Fkusuario') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+                            <th id="header_Fkmascota">Mascota<% if (page.orderBy == 'Fkmascota') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
                             <th id="header_Latitud">Latitud<% if (page.orderBy == 'Latitud') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
                             <th id="header_Longitud">Longitud<% if (page.orderBy == 'Longitud') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-                            <th id="header_Recompensa">Recompensa<% if (page.orderBy == 'Recompensa') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
-                            <th id="header_TipoMoneda">Tipo Moneda<% if (page.orderBy == 'TipoMoneda') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
                             <th id="header_Descripcion">Descripcion<% if (page.orderBy == 'Descripcion') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
                             <th id="header_Fecha">Fecha<% if (page.orderBy == 'Fecha') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
                             <th id="header_Hora">Hora<% if (page.orderBy == 'Hora') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
@@ -81,13 +82,10 @@
                         <% items.each(function(item) { %>
                             <tr id="<%= _.escape(item.get('pkposter')) %>">
                                 <td><%= _.escape(item.get('pkposter') || '') %></td>
-                                <td><%= _.escape(item.get('fkusuario') || '') %></td>
-                                <td><%= _.escape(item.get('fkmascota') || '') %></td>
-                                <td><%= _.escape(item.get('fktipoPoster') || '') %></td>
+                                <td><%= _.escape(item.get('usuario_nombre') || '') %></td>
+                                <td><%= _.escape(item.get('mascota_nombre') || '') %></td>
                                 <td><%= _.escape(item.get('latitud') || '') %></td>
                                 <td><%= _.escape(item.get('longitud') || '') %></td>
-                                <td><%= _.escape(item.get('recompensa') || '') %></td>
-                                <td><%= _.escape(item.get('tipoMoneda') || '') %></td>
                                 <td><%= _.escape(item.get('descripcion') || '') %></td>
                                 <td><%= _.escape(item.get('fecha') || '') %></td>
                                 <td><%= _.escape(item.get('hora') || '') %></td>

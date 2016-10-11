@@ -36,6 +36,7 @@
 			<tr>
 				<th id="header_Pkmascota">Pkmascota<% if (page.orderBy == 'Pkmascota') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Nombre">Nombre<% if (page.orderBy == 'Nombre') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
+				<th id="header_Nombre">Genero<% if (page.orderBy == 'Genero') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Tamano">Tamano<% if (page.orderBy == 'Tamano') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_Color">Color<% if (page.orderBy == 'Color') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
 				<th id="header_FktipoMascota">Fktipo Mascota<% if (page.orderBy == 'FktipoMascota') { %> <i class='icon-arrow-<%= page.orderDesc ? 'up' : 'down' %>' /><% } %></th>
@@ -48,6 +49,7 @@
 			<tr id="<%= _.escape(item.get('pkmascota')) %>">
 				<td><%= _.escape(item.get('pkmascota') || '') %></td>
 				<td><%= _.escape(item.get('nombre') || '') %></td>
+				<td><%= _.escape(item.get('genero') || '') %></td>
 				<td><%= _.escape(item.get('tamano') || '') %></td>
 				<td><%= _.escape(item.get('color') || '') %></td>
 				<td><%= _.escape(item.get('fktipoMascota') || '') %></td>
@@ -79,6 +81,17 @@
 						<span class="help-inline"></span>
 					</div>
 				</div>
+                <div id="nombreInputContainer" class="control-group">
+                    <label class="control-label" for="genero">Genero</label>
+                    <div class="controls inline-inputs">
+                        <select class="input-xlarge" id="genero">
+                            <option value="macho">macho</option>
+                            <option value="hembra">hembra</option>
+                            <option value="indeterminado">indeterminado</option>
+                        </select>
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
 				<div id="tamanoInputContainer" class="control-group">
 					<label class="control-label" for="tamano">Tamano</label>
 					<div class="controls inline-inputs">

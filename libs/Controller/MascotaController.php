@@ -52,7 +52,7 @@ class MascotaController extends AppBaseController
 			// TODO: this will limit results based on all properties included in the filter list 
 			$filter = RequestUtil::Get('filter');
 			if ($filter) $criteria->AddFilter(
-				new CriteriaFilter('Pkmascota,Nombre,Tamano,Color,FktipoMascota,Fkraza,Estado'
+				new CriteriaFilter('Pkmascota,Nombre,Genero,Tamano,Color,FktipoMascota,Fkraza,Estado'
 				, '%'.$filter.'%')
 			);
 
@@ -155,6 +155,7 @@ class MascotaController extends AppBaseController
 
 			$mascota->Nombre = $this->SafeGetVal($json, 'nombre');
 			$mascota->Tamano = $this->SafeGetVal($json, 'tamano');
+			$mascota->Genero = $this->SafeGetVal($json, 'genero');
 			$mascota->Color = $this->SafeGetVal($json, 'color');
 			$mascota->FktipoMascota = $this->SafeGetVal($json, 'fktipoMascota');
 			$mascota->Fkraza = $this->SafeGetVal($json, 'fkraza');
@@ -203,6 +204,7 @@ class MascotaController extends AppBaseController
 			// $mascota->Pkmascota = $this->SafeGetVal($json, 'pkmascota', $mascota->Pkmascota);
 
 			$mascota->Nombre = $this->SafeGetVal($json, 'nombre', $mascota->Nombre);
+			$mascota->Genero = $this->SafeGetVal($json, 'genero', $mascota->Genero);
 			$mascota->Tamano = $this->SafeGetVal($json, 'tamano', $mascota->Tamano);
 			$mascota->Color = $this->SafeGetVal($json, 'color', $mascota->Color);
 			$mascota->FktipoMascota = $this->SafeGetVal($json, 'fktipoMascota', $mascota->FktipoMascota);

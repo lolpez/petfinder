@@ -307,6 +307,7 @@ var page = {
 
 			'nombre': $('input#nombre').val(),
 			'tamano': $('input#tamano').val(),
+			'genero': $('select#genero').val(),
 			'color': $('input#color').val(),
 			'fktipoMascota': $('select#fktipoMascota').val(),
 			'fkraza': $('select#fkraza').val(),

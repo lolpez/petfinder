@@ -43,15 +43,9 @@ class PosterController extends AppBaseController
 	}
 
     public function NuevoPost(){
-        /*$datos = new stdClass();
-        $datos->pkusuario = $_POST['pkusuario'];
-        $datos->pkmascota = $_POST['pkusuario'];
-
-        echo json_encode($datos);*/
-
-
-        //Insertar la mascota
-        $mascota = new Mascota($this->Phreezer);
+		//echo json_encode($_POST);
+		//Insertar la mascota
+	    $mascota = new Mascota($this->Phreezer);
         $mascota->Nombre = $_POST['nombre'];
         $mascota->Tamano = $_POST['tamano'];
         $mascota->Color = $_POST['color'];
@@ -60,14 +54,11 @@ class PosterController extends AppBaseController
         $mascota->Validate();
         if (count($mascota->GetValidationErrors()) > 0)
         {
-            echo 'Error al guardar mascota <br>';
+            echo 0;
         }
         else
         {
             $mascota->Save();
-            echo 'Exito al guardar una nueva mascota con los siguientes datos: ';
-            echo json_encode($mascota);
-            echo '<br>';
         }
 
         //Insertar poster
@@ -87,36 +78,35 @@ class PosterController extends AppBaseController
 
         if (count($poster->GetValidationErrors()) > 0)
         {
-            echo 'Error al guardar poster <br>';
+            echo 0;
         }
         else
         {
             $poster->Save();
-            echo 'Exito al guardar un nuevo post con los siguientes datos: ';
-            echo json_encode($poster);
-            echo '<br>';
             //Insertar imagen
-            if ($_FILES["imagen"]['size'] > 0) {
-                $imagen = new Imagen($this->Phreezer);
-                $extencion = pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
-                $imagen->Fkposter = $poster->Pkposter;
-                $imagen->Ruta = "images/pets/".$imagen->Fkposter.".".$extencion;
-                move_uploaded_file($_FILES['imagen']['tmp_name'],  $imagen->Ruta);
-                $imagen->Validate();
-                if (count($imagen->GetValidationErrors()) > 0)
-                {
-                    echo 'Error al guardar imagen';
-                }
-                else
-                {
-                    $imagen->Save();
-                    echo 'exito al guardar imagen con los siguientes datos: ';
-                    echo json_encode($imagen);
-                    echo '<br>';
-                }
-            }else{
-                echo 'sin embargo no subio ninguna imagen por que no se selecciono ninguna';
+			$imagen = new Imagen($this->Phreezer);
+			$imagen->Fkposter = $poster->Pkposter;
+			if (isset($_FILES["imagen"])){
+				if ($_FILES["imagen"]['size'] > 0) {
+					$extencion = pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
+					$imagen->Ruta = "images/pets/".$imagen->Fkposter.".".$extencion;
+					move_uploaded_file($_FILES['imagen']['tmp_name'],  $imagen->Ruta);
+				}else{
+					$imagen->ruta = '';
+				}
+			}else{
+                $imagen->Ruta = 'xxx';
             }
+			$imagen->Validate();
+			if (count($imagen->GetValidationErrors()) > 0)
+			{
+				echo 0;
+			}
+			else
+			{
+				$imagen->Save();
+			}            
+			echo $poster->Pkposter;
         }
     }
 

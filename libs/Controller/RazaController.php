@@ -40,6 +40,10 @@ class RazaController extends AppBaseController
         $this->Render();
 	}
 
+    public function Listar(){
+        echo json_encode($this->Phreezer->Query('Raza')->ToObjectArray(true, $this->SimpleObjectParams()));
+    }
+
 	/**
 	 * API Method queries for Raza records and render as JSON
 	 */

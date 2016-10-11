@@ -43,9 +43,13 @@
                         <% items.each(function(item) { %>
                             <li class="span3">
                                 <div class="thumbnail">
-                                    <a href="<%= _.escape(item.get('imagen') || '') %>" class="thumbnail" target="_blank">
-                                        <img src="<%= _.escape(item.get('imagen') || '') %>" width="100px">
+								<% if (_.escape(item.get('imagen')) != '') { %>
+									<a href="<%= _.escape(item.get('imagen') || '') %>" class="thumbnail" target="_blank">
+                                        <img src="<%= _.escape(item.get('imagen') || '') %>" width="100px" style="border-radius: 5px">
                                     </a>
+								<% }else{ %>
+									(Sin imagen)
+								<% } %>                                    
                                     <div class="caption">
                                         <h3><%= _.escape(item.get('fkmascota') || '') %></h3>
                                         <p><%= _.escape(item.get('descripcion') || '') %></p>
@@ -87,7 +91,13 @@
                                 <td><%= _.escape(item.get('descripcion') || '') %></td>
                                 <td><%= _.escape(item.get('fecha') || '') %></td>
                                 <td><%= _.escape(item.get('hora') || '') %></td>
-                                <td><img src="<%= _.escape(item.get('imagen') || '') %>" width="100px" style="border-radius: 5px"></td>
+                                <td>
+									<% if (_.escape(item.get('imagen')) != '') { %>
+										<img src="<%= _.escape(item.get('imagen') || '') %>" width="100px" style="border-radius: 5px">
+									<% }else{ %>
+										(Sin imagen)
+									<% } %>
+								</td>
                             </tr>
                         <% }); %>
                         </tbody>

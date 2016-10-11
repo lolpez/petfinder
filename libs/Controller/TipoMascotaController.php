@@ -40,6 +40,10 @@ class TipoMascotaController extends AppBaseController
 		$this->Render();
 	}
 
+    public function Listar(){
+        echo json_encode($this->Phreezer->Query('TipoMascota')->ToObjectArray(true, $this->SimpleObjectParams()));
+    }
+
 	/**
 	 * API Method queries for TipoMascota records and render as JSON
 	 */

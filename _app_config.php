@@ -73,6 +73,8 @@ GlobalConfig::$ROUTE_MAP = array(
 
     //Web Service Personalizado
     'POST:web_service/poster' => array('route' => 'Poster.NuevoPost'),
+    'GET:web_service/tipo_mascota' => array('route' => 'TipoMascota.Listar'),
+    'GET:web_service/raza' => array('route' => 'Raza.Listar'),
 
 	// default controller when no route specified
 	'GET:' => array('route' => 'Default.Home'),

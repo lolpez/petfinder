@@ -14,7 +14,7 @@
                         <path d="M 50 0 L 8 80 L 0 14 Z" fill="rgba(220, 220, 220, 0.6)"></path>
                                 </svg>
                     <img src="resources/material-design/images/logo.png" alt="." style="max-height: 36px; display:none">
-                    <span class="hidden-folded m-l inline">Spectrolab</span>
+                    <span class="hidden-folded m-l inline">FIND MY PET</span>
                 </a>
                 <!-- / brand -->
             </div>
@@ -86,7 +86,7 @@
                     <li>
                         <a href="#" target="_blank" md-ink-ripple>
                             <i class="icon mdi-action-help i-20"></i>
-                            <p class="muted"><small>&copy; <?php echo date('Y'); ?> SPECTROLAB</small></p>
+                            <p class="muted"><small>&copy; <?php echo date('Y'); ?> NOVASOFT</small></p>
                         </a>
                     </li>
                 </ul>

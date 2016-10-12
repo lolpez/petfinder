@@ -11,7 +11,7 @@
 		<div class="hero-unit">
 			<h1>Find My Pet Web <i class="icon-thumbs-up"></i></h1>
 			<p>Esta es una pagina solo para los administradores. Por favor vayase</p>
-			<a class="btn btn-primary btn-large" href="post.php">Ejemplo de nueva publicacion</a></p>
+			<a class="btn btn-primary btn-large" href="poster/nuevo">Ejemplo de nueva publicacion</a></p>
 		</div>
 
 	</div> <!-- /container -->

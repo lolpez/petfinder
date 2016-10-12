@@ -5,7 +5,7 @@
     <base href="<?php $this->eprint($this->ROOT_URL); ?>" />
     <title><?php $this->eprint($this->title); ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="SPECTROLAB" />
+    <meta name="description" content="NOVASOFT" />
     <meta name="author" content="phreeze builder | phreeze.com" />
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <!-- material-design -->

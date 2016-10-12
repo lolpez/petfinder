@@ -107,10 +107,10 @@ class PosterController extends AppBaseController
 					$imagen->Ruta = "resources/images/pets/".$imagen->Fkposter.".".$extencion;
 					move_uploaded_file($_FILES['imagen']['tmp_name'],  $imagen->Ruta);
 				}else{
-					$imagen->ruta = '';
+					$imagen->Ruta = '';
 				}
 			}else{
-                $imagen->Ruta = 'xxx';
+                $imagen->Ruta = '';
             }
 			$imagen->Validate();
 			if (count($imagen->GetValidationErrors()) > 0)
@@ -123,8 +123,8 @@ class PosterController extends AppBaseController
 			else
 			{
 				$imagen->Save();
-			}            
-			echo $poster->Pkposter;
+				echo $poster->Pkposter;
+			}
         }
     }
 

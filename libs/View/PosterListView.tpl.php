@@ -48,34 +48,37 @@ $this->display('_Header.tpl.php');
         </ul>
         <div class="tab-content p m-b-md b-t b-t-2x">
             <div role="tabpanel" class="tab-pane animated fadeIn active" id="tab_1">
-                <div class="row">
+                <% var i=0; %>
+
                     <% items.each(function(item) { %>
-                        <div class="col-sm-3">
-                            <div class="panel panel-card">
-                                <div class="item">
-                                    <% if (_.escape(item.get('imagen')) != '') { %>
-                                        <img src="<%= _.escape(item.get('imagen') || '') %>" class="w-full r-t" style="max-height: 250px" >
-                                    <% }else{ %>
-                                        <span class="fa-stack fa-lg">
-                                <i class="fa fa-camera fa-stack-1x"></i>
-                                <i class="fa fa-ban fa-stack-2x text-danger"></i>
-                            </span>
-                                    <% } %>
-                                </div>
-                                <button md-ink-ripple="" class="md-btn md-fab md-raised indigo m-r md-fab-offset pull-right waves-effect"><i class="fa fa-heart"></i></button>
-                                <div class="p">
-                                    <h3><%= _.escape(item.get('mascota_nombre') || '') %></h3>
-                                    <h4><%= _.escape(item.get('tipoMascota_nombre')+ ' ' + item.get('mascota_tamano')+ ' ' +item.get('raza_nombre') || '') %></h4>
-                                    <h5>Dueño: <%= _.escape(item.get('usuario_nombre') || '') %></h5>
-                                    <h5>Genero: <%= _.escape(item.get('mascota_genero') || '') %></h5>
-                                    <h5>Color: <%= _.escape(item.get('mascota_color') || '') %></h5>
-                                    <p class="text-sm text-muted">Descripcion: <%= _.escape(item.get('descripcion') || '') %></p>
-                                    <div class="text-muted-dk">Publicado el <%= _.escape(item.get('fecha')+ ' ' +item.get('hora') || '') %></div>
+                        <% if (i == 0){ %> <div class="row"> <% } %>
+                            <div class="col-sm-3">
+                                <div class="panel panel-card">
+                                    <div class="item">
+                                        <% if (_.escape(item.get('imagen')) != '') { %>
+                                            <img src="<%= _.escape(item.get('imagen') || '') %>" class="w-full r-t" style="max-height: 250px" >
+                                        <% }else{ %>
+                                            <span class="fa-stack fa-lg">
+                                    <i class="fa fa-camera fa-stack-1x"></i>
+                                    <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                </span>
+                                        <% } %>
+                                    </div>
+                                    <button md-ink-ripple="" class="md-btn md-fab md-raised indigo m-r md-fab-offset pull-right waves-effect"><i class="fa fa-heart"></i></button>
+                                    <div class="p">
+                                        <h3><%= _.escape(item.get('mascota_nombre') || '') %></h3>
+                                        <h4><%= _.escape(item.get('tipoMascota_nombre')+ ' ' + item.get('mascota_tamano')+ ' ' +item.get('raza_nombre') || '') %></h4>
+                                        <h5>Dueño: <%= _.escape(item.get('usuario_nombre') || '') %></h5>
+                                        <h5>Genero: <%= _.escape(item.get('mascota_genero') || '') %></h5>
+                                        <h5>Color: <%= _.escape(item.get('mascota_color') || '') %></h5>
+                                        <p class="text-sm text-muted">Descripcion: <%= _.escape(item.get('descripcion') || '') %></p>
+                                        <div class="text-muted-dk">Publicado el <%= _.escape(item.get('fecha')+ ' ' +item.get('hora') || '') %></div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        <% if (i == 3){ i=0; %> </div> <% }else{ i++; } %>
                     <% }); %>
-                </div>
+                <% if (i != 0){ %> </div> <% } %>
             </div>
             <div role="tabpanel" class="tab-pane animated fadeIn" id="tab_2">
                 <div class="table-responsive">

@@ -118,6 +118,7 @@ GlobalConfig::$ROUTE_MAP = array(
 		
 	// Poster
 	'GET:posters' => array('route' => 'Poster.ListView'),
+	'GET:posters/tabla' => array('route' => 'Poster.TablaView'),
 	'GET:poster/nuevo' => array('route' => 'Poster.Nuevo'),
 	'GET:poster/(:num)' => array('route' => 'Poster.SingleView', 'params' => array('pkposter' => 1)),
 	'GET:api/posters' => array('route' => 'Poster.Query'),

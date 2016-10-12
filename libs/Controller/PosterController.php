@@ -54,6 +54,13 @@ class PosterController extends AppBaseController
         $this->Render('PosterNuevo');
     }
 
+    public function Ver(){
+        $criteria = new PosterCriteria();
+        $criteria->Pkposter_Equals = $this->GetRouter()->GetUrlParam('pkposter');
+        $this->Assign('poster',$this->Phreezer->GetByCriteria('PosterReporter',$criteria)->ToObject());
+        $this->Render('PosterVer');
+    }
+
     public function Guardar(){
 		//echo json_encode($_POST);
 		//Insertar la mascota

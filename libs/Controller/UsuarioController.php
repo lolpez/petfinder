@@ -49,15 +49,21 @@ class UsuarioController extends AppBaseController
         $usuario->Nrotelefono = $_POST['nro_telefono'];
         $usuario->IdFacebook = $_POST['id_facebook'];
         $usuario->Validate();
-        if (count($usuario->GetValidationErrors()) > 0)
+
+        require_once 'Model/UsuarioCriteria.php';
+        //Verificar que el codigo facebook sea unico
+        $criteria = new UsuarioCriteria();
+        $criteria->IdFacebook_Equals = $usuario->IdFacebook;
+
+        if ((count($usuario->GetValidationErrors()) > 0) ||  ($this->Phreezer->Query('Usuario',$criteria)->count() > 0))
         {
             echo 0;
         }
         else
         {
             $usuario->Save();
+            echo $usuario->Pkusuario;
         }
-        echo $usuario->Pkusuario;
     }
 
 	/**
@@ -178,13 +184,16 @@ class UsuarioController extends AppBaseController
 			$usuario->Email = $this->SafeGetVal($json, 'email');
 			$usuario->Nrotelefono = $this->SafeGetVal($json, 'nrotelefono');
 			$usuario->IdFacebook = $this->SafeGetVal($json, 'idFacebook');
-
 			$usuario->Validate();
 			$errors = $usuario->GetValidationErrors();
 
-			if (count($errors) > 0)
+            require_once 'Model/UsuarioCriteria.php';
+            //Verificar que el codigo facebook sea unico
+            $criteria = new UsuarioCriteria();
+            $criteria->IdFacebook_Equals = $usuario->IdFacebook;
+			if ((count($errors) > 0) || ($this->Phreezer->Query('Usuario',$criteria)->count() > 0))
 			{
-				$this->RenderErrorJSON('Please check the form for errors',$errors);
+				$this->RenderErrorJSON('Asegurese que el codigo de usuario no se repita',$errors);
 			}
 			else
 			{

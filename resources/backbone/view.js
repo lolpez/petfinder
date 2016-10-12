@@ -14,34 +14,31 @@ var view = {
 	{
 		var html = '';
 		if (page.totalPages > 1) {
-			html += '<div class="pagination"><ul>';
+            html += '<div class="text-left">';
+            html += '<div class="btn-group m-b">';
+            var first = 1;
+            var last = (1 * page.totalPages);
 
-			var first = 1;
-			var last = (1 * page.totalPages);
+            if (last > 10) {
+                first = (1 * page.currentPage) - 5;
+                first = first > 1 ? first : 1;
 
-			if (last > 10) {
-				first = (1 * page.currentPage) - 5;
-				first = first > 1 ? first : 1;
+                last = last > (first + 9) ? (first + 9) : last;
+            }
 
-				last = last > (first + 9) ? (first + 9) : last;
-			}
+            if (first > 1) {
+                html += '<button class="pageButton btn btn-default waves-effect" id="page-' + (first - 1) + '">&laquo;</button>';
+            }
 
-			if (first > 1) {
-				html += '<li><a class="pageButton" id="page-' + (first - 1) + '" href="#">&laquo;</a></li>';
-			}
+            for (var i = first; i <= last; i++) {
+                html += '<button class="pageButton btn btn-' + (page.currentPage == i ? 'info' : 'default') + ' waves-effect" id="page-' + i + '" >' + i + '</button>';
+            }
 
-			for (var i = first; i <= last; i++) {
-				html += '<li' + (page.currentPage == i ? ' class="active"' : '') + '>'
-					+ '<a class="pageButton" id="page-' + i + '" href="#">'
-					+ i + '</a></li>';
-			}
-
-			if (last < (1 * page.totalPages) ) {
-				html += '<li><a class="pageButton" id="page-' + (last+1) + '" href="#">&raquo;</a></li>';
-			}
-			html += '</ul></div>';
+            if (last < (1 * page.totalPages) ) {
+                html += '<button class="btn btn-default pageButton waves-effect" id="page-' + (last+1) + '">&raquo;</button>';
+            }
+            html += '</div></div>';
 		}
-
 		return html;
 	},
 

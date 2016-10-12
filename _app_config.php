@@ -125,6 +125,7 @@ GlobalConfig::$ROUTE_MAP = array(
 	'GET:api/poster/(:num)' => array('route' => 'Poster.Read', 'params' => array('pkposter' => 2)),
 	'PUT:api/poster/(:num)' => array('route' => 'Poster.Update', 'params' => array('pkposter' => 2)),
 	'DELETE:api/poster/(:num)' => array('route' => 'Poster.Delete', 'params' => array('pkposter' => 2)),
+    'GET:poster/ver/(:num)' => array('route' => 'Poster.Ver', 'params' => array('pkposter' => 2)),
 		
 	// Raza
 	'GET:razas' => array('route' => 'Raza.ListView'),

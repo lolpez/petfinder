@@ -14,7 +14,7 @@ var model = {};
  * long polling duration in miliseconds.  (5000 = recommended, 0 = disabled)
  * warning: setting this to a low number will increase server load
  */
-model.longPollDuration = 0;
+model.longPollDuration = 500;
 
 /**
  * whether to refresh the collection immediately after a model is updated

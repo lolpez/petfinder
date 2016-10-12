@@ -36,7 +36,6 @@ $this->display('_Header.tpl.php');
 <!-- underscore template for the collection -->
 <script type="text/template" id="posterCollectionTemplate">
     <%=  view.getPaginationHtml(page) %>
-
     <div class="md-whiteframe-z0 bg-white">
         <ul class="nav nav-md nav-tabs nav-lines b-info">
             <li class="active">
@@ -49,35 +48,36 @@ $this->display('_Header.tpl.php');
         <div class="tab-content p m-b-md b-t b-t-2x">
             <div role="tabpanel" class="tab-pane animated fadeIn active" id="tab_1">
                 <% var i=0; %>
-
-                    <% items.each(function(item) { %>
-                        <% if (i == 0){ %> <div class="row"> <% } %>
-                            <div class="col-sm-3">
-                                <div class="panel panel-card">
-                                    <div class="item">
-                                        <% if (_.escape(item.get('imagen')) != '') { %>
-                                            <img src="<%= _.escape(item.get('imagen') || '') %>" class="w-full r-t" style="max-height: 250px" >
-                                        <% }else{ %>
-                                            <span class="fa-stack fa-lg">
-                                    <i class="fa fa-camera fa-stack-1x"></i>
-                                    <i class="fa fa-ban fa-stack-2x text-danger"></i>
-                                </span>
-                                        <% } %>
-                                    </div>
-                                    <button md-ink-ripple="" class="md-btn md-fab md-raised indigo m-r md-fab-offset pull-right waves-effect"><i class="fa fa-heart"></i></button>
-                                    <div class="p">
-                                        <h3><%= _.escape(item.get('mascota_nombre') || '') %></h3>
-                                        <h4><%= _.escape(item.get('tipoMascota_nombre')+ ' ' + item.get('mascota_tamano')+ ' ' +item.get('raza_nombre') || '') %></h4>
-                                        <h5>Dueño: <%= _.escape(item.get('usuario_nombre') || '') %></h5>
-                                        <h5>Genero: <%= _.escape(item.get('mascota_genero') || '') %></h5>
-                                        <h5>Color: <%= _.escape(item.get('mascota_color') || '') %></h5>
-                                        <p class="text-sm text-muted">Descripcion: <%= _.escape(item.get('descripcion') || '') %></p>
-                                        <div class="text-muted-dk">Publicado el <%= _.escape(item.get('fecha')+ ' ' +item.get('hora') || '') %></div>
-                                    </div>
+                <% items.each(function(item) { %>
+                    <% if (i == 0){ %> <div class="row"> <% } %>
+                        <div class="col-sm-3">
+                            <div class="panel panel-card blue">
+                                <div class="item">
+                                    <% if (_.escape(item.get('imagen')) != '') { %>
+                                        <img src="<%= _.escape(item.get('imagen') || '') %>" class="w-full r-t" style="height: 200px; width: 200px; max-height: 250px" >
+                                    <% }else{ %>
+                                        <span class="fa-stack fa-lg">
+                                            <i class="fa fa-camera fa-stack-1x"></i>
+                                            <i class="fa fa-ban fa-stack-2x text-danger"></i>
+                                        </span>
+                                    <% } %>
+                                </div>
+                                <a href="poster/ver/<%= _.escape(item.get('pkposter') || '') %>" md-ink-ripple="" class="md-btn md-fab md-raised green m-r md-fab-offset pull-right waves-effect"><i class="fa fa-fw fa-info"></i></a>
+                                <div class="p">
+                                    <h3><%= _.escape(item.get('mascota_nombre') || '') %></h3>
+                                    <h4><%= _.escape(item.get('tipoMascota_nombre')+ ' ' + item.get('mascota_tamano')+ ' ' +item.get('raza_nombre') || '') %></h4>
+                                    <h5>Dueño: <%= _.escape(item.get('usuario_nombre') || '') %></h5>
+                                    <h5>Genero: <%= _.escape(item.get('mascota_genero') || '') %></h5>
+                                    <h5>Color: <%= _.escape(item.get('mascota_color') || '') %></h5>
+                                    <p class="text-sm text-muted">
+                                        Descripcion: <%= jQuery.trim(_.escape(item.get('descripcion') || '')).substring(0, 20).split(" ").slice(0, -1).join(" ") + "..." %>
+                                    </p>
+                                    <div class="text-muted-dk">Publicado el <%= _.escape(item.get('fecha')+ ' ' +item.get('hora') || '') %></div>
                                 </div>
                             </div>
-                        <% if (i == 3){ i=0; %> </div> <% }else{ i++; } %>
-                    <% }); %>
+                        </div>
+                    <% if (i == 3){ i=0; %> </div> <% }else{ i++; } %>
+                <% }); %>
                 <% if (i != 0){ %> </div> <% } %>
             </div>
             <div role="tabpanel" class="tab-pane animated fadeIn" id="tab_2">

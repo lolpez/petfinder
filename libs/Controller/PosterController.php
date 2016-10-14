@@ -45,9 +45,9 @@ class PosterController extends AppBaseController
     public function Listar()
     {
         require_once 'Model/MascotaCriteria.php';
-        $mascota = new MascotaCriteria();
-        $mascota->Estado_Equals = 0;
-        $mascotas = $this->Phreezer->Query('PosterReporter',$mascota)->ToObjectArray(true, $this->SimpleObjectParams());
+        $criteria = new MascotaCriteria();
+        $criteria->Estado_Equals = 0;
+        $mascotas = $this->Phreezer->Query('PosterReporter',$criteria)->ToObjectArray(true, $this->SimpleObjectParams());
         foreach ($mascotas as $r){
             $r->imagen = 'http://findmypetweb-lolpez.rhcloud.com/'.$r->imagen;
         }
@@ -66,6 +66,17 @@ class PosterController extends AppBaseController
         $criteria->Pkposter_Equals = $this->GetRouter()->GetUrlParam('pkposter');
         $this->Assign('poster',$this->Phreezer->GetByCriteria('PosterReporter',$criteria)->ToObject());
         $this->Render('PosterVer');
+    }
+
+    public function VerMisPosts(){
+        require_once 'Model/UsuarioCriteria.php';
+        $criteria = new UsuarioCriteria();
+        $criteria->Pkusuario_Equals = $this->GetRouter()->GetUrlParam('pkusuario');
+        $posters = $this->Phreezer->Query('PosterReporter',$criteria)->ToObjectArray(true, $this->SimpleObjectParams());
+        foreach ($posters as $r){
+            $r->imagen = 'http://findmypetweb-lolpez.rhcloud.com/'.$r->imagen;
+        }
+        echo json_encode($posters);
     }
 
     public function Guardar(){

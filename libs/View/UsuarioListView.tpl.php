@@ -68,16 +68,6 @@ $this->display('_Header.tpl.php');
 
     <!-- underscore template for the model -->
     <script type="text/template" id="usuarioModelTemplate">
-        <% if (_.escape(item.get('ruta')) != '') { %>
-            <div class="row">
-                <div class="col-xs-12 text-center">
-                    <a href="<%= _.escape(item.get('ruta') || '') %>" target="_blank">
-                        <img width="200px" src="<%= _.escape(item.get('ruta') || '') %>" style="border-radius: 25px"/>
-                    </a>
-                </div>
-            </div>
-            <br>
-        <% } %>
         <form onsubmit="return false;">
             <fieldset>
                 <span class="hidden" id="pkusuario"><%= _.escape(item.get('pkusuario') || '') %></span>

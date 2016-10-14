@@ -54,16 +54,23 @@ class UsuarioController extends AppBaseController
         //Verificar que el codigo facebook sea unico
         $criteria = new UsuarioCriteria();
         $criteria->IdFacebook_Equals = $usuario->IdFacebook;
-
-        if ((count($usuario->GetValidationErrors()) > 0) ||  ($this->Phreezer->Query('Usuario',$criteria)->count() > 0))
-        {
-            echo 0;
-        }
-        else
-        {
-            $usuario->Save();
-            echo $usuario->Pkusuario;
-        }
+		$resultado = $this->Phreezer->GetByCriteria('Usuario',$criteria)->ToObject();
+		
+		if (count($resultado) == 1){
+			//El usuario ya existe
+			echo $resultado->Pkusuario;
+		}else{
+			//Registrar nuevo
+			 if (count($usuario->GetValidationErrors()) > 0)
+			{
+				echo 0;
+			}
+			else
+			{
+				$usuario->Save();
+				echo $usuario->Pkusuario;
+			}
+		}       
     }
 
 	/**
@@ -191,16 +198,25 @@ class UsuarioController extends AppBaseController
             //Verificar que el codigo facebook sea unico
             $criteria = new UsuarioCriteria();
             $criteria->IdFacebook_Equals = $usuario->IdFacebook;
-			if ((count($errors) > 0) || ($this->Phreezer->Query('Usuario',$criteria)->count() > 0))
-			{
-				$this->RenderErrorJSON('Asegurese que el codigo de usuario no se repita',$errors);
-			}
-			else
-			{
-				$usuario->Save();
-				$this->RenderJSON($usuario, $this->JSONPCallback(), true, $this->SimpleObjectParams());
-			}
-
+			$resultado = $this->Phreezer->GetByCriteria('Usuario',$criteria)->ToObject();
+			
+			
+			
+			if (count($resultado) == 1){
+				//El usuario ya existe
+				$this->RenderErrorJSON('El ID de facebook '.$resultado->IdFacebook.' ya existe',$errors);
+			}else{
+				//Registrar nuevo
+				if (count($errors) > 0)
+				{
+					$this->RenderErrorJSON('Please check the form for errors',$errors);
+				}
+				else
+				{
+					$usuario->Save();
+					$this->RenderJSON($usuario, $this->JSONPCallback(), true, $this->SimpleObjectParams());
+				}
+			}       
 		}
 		catch (Exception $ex)
 		{

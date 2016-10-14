@@ -51,9 +51,7 @@ class PosterController extends AppBaseController
         foreach ($mascotas as $r){
             $r->imagen = 'http://findmypetweb-lolpez.rhcloud.com/'.$r->imagen;
         }
-        echo '<pre>';
-         var_dump($mascotas);
-        echo '<pre>';
+        echo json_encode($mascotas);
     }
 
     public function Nuevo(){

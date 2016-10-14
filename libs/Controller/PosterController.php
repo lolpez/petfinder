@@ -44,7 +44,16 @@ class PosterController extends AppBaseController
 
     public function Listar()
     {
-        echo json_encode($this->Phreezer->Query('PosterReporter')->ToObjectArray(true, $this->SimpleObjectParams()));
+        require_once 'Model/MascotaCriteria.php';
+        $mascota = new MascotaCriteria();
+        $mascota->Estado_Equals = 0;
+        $mascotas = $this->Phreezer->Query('PosterReporter',$mascota)->ToObjectArray(true, $this->SimpleObjectParams());
+        foreach ($mascotas as $r){
+            $r->imagen = 'http://findmypetweb-lolpez.rhcloud.com/'.$r->imagen;
+        }
+        echo '<pre>';
+         var_dump($mascotas);
+        echo '<pre>';
     }
 
     public function Nuevo(){

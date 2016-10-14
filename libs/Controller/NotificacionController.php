@@ -169,6 +169,10 @@ class NotificacionController extends AppBaseController
 			else
 			{
 				$notificacion->Save();
+
+                $this->EnviarNotificacion();
+
+
 				$this->RenderJSON($notificacion, $this->JSONPCallback(), true, $this->SimpleObjectParams());
 			}
 
@@ -178,6 +182,10 @@ class NotificacionController extends AppBaseController
 			$this->RenderExceptionJSON($ex);
 		}
 	}
+
+    public function EnviarNotificacion(){
+
+    }
 
 	/**
 	 * API Method updates an existing Notificacion record and render response as JSON

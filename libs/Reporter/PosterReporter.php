@@ -29,6 +29,7 @@ class PosterReporter extends Reporter
     public $TipoMascota_nombre;
     public $Raza_nombre;
     public $Usuario_nombre;
+    public $Usuario_id_facebook;
 
 	public $Pkposter;
 	public $Fkusuario;
@@ -41,7 +42,6 @@ class PosterReporter extends Reporter
 	public $Descripcion;
 	public $Fecha;
 	public $Hora;
-	public $Estado;
 
 	/*
 	* GetCustomQuery returns a fully formed SQL statement.  The result columns
@@ -63,6 +63,7 @@ class PosterReporter extends Reporter
 			,`tipo_mascota`.`nombre` as TipoMascota_nombre
 			,`raza`.`nombre` as Raza_nombre
 			,`usuario`.`nombre` as Usuario_nombre
+			,`usuario`.`id_facebook` as Usuario_id_facebook
 
 			,`poster`.`pkposter` as Pkposter
 			,`poster`.`fkusuario` as Fkusuario

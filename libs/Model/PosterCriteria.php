@@ -45,6 +45,8 @@ class PosterCriteria extends PosterCriteriaDAO
                 return 'raza.nombre';
             case 'Usuario_nombre':
                 return 'usuario.nombre';
+            case 'Usuario_id_facebook':
+                return 'usuario.id_facebook';
             default:
                 return parent::GetFieldFromProp($propname);
         }

@@ -3,25 +3,39 @@ $this->assign('title','FIND MY PET | Publicacion');
 $this->assign('nav','Publicacion');
 $this->display('_Header.tpl.php');
 ?>
+<style>
+    #googleMap{
+        height: 300px;
+        overflow: hidden;
+        position: relative;
+    }
+</style>
+
 <div class="row">
     <div class="col-xs-4">
-        <h3>Publicacion</h3>
+        <h1>
+            <?php echo $this->poster->Mascota_nombre ?>
+            <span class=
+                  <?php if (!$this->poster->Mascota_estado) { ?>
+                  "badge bg-danger">Perdido
+                <?php }else{ ?>
+                    "badge bg-success">Encontrado
+                <?php } ?>
+            </span>
+        </h1>
     </div>
 </div>
 
 <div class="row row-sm">
     <div class="col-sm-4">
         <div class="panel panel-card">
-            <div class="r-t pos-rlt waves-effect" md-ink-ripple="" style="background:url(<?php echo $this->poster->Imagen ?>) center center; background-size:cover; display: block">
-                <div class="p-lg bg-white-overlay text-center r-t">
-                    <a href="">
-                        <img src="<?php echo $this->poster->Imagen ?>" style="width: 50%">
-                    </a>
-                    <div class="m-b m-t-sm h2">
-                        <span class=""><?php echo $this->poster->Mascota_nombre ?></span>
+            <a href="<?php echo $this->poster->Imagen ?>" target="_blank">
+                <div class="r-t pos-rlt waves-effect" md-ink-ripple="" style="background:url(<?php echo $this->poster->Imagen ?>) center center; background-size:cover; display: block">
+                    <div class="bg-white-overlay text-center r-t">
+                        <img src="<?php echo $this->poster->Imagen ?>" style="width: 70%;">
                     </div>
                 </div>
-            </div>
+            </a>
             <div class="list-group no-radius no-border">
                 <a class="list-group-item">
                     <span class="pull-right badge"><?php echo $this->poster->Usuario_nombre ?></span>Dueño
@@ -40,7 +54,7 @@ $this->display('_Header.tpl.php');
                 <p>Descripcion</p>
                 <p><?php echo $this->poster->Descripcion ?></p>
                 <div class="m-v">
-                    <a class="btn btn-icon btn-default waves-effect"><i class="fa fa-facebook"></i></a>
+                    <a href="https://www.facebook.com/<?php echo $this->poster->Usuario_id_facebook ?>" target="_blank" class="btn waves-effect indigo-800"><i class="fa fa-facebook"></i></a>
                 </div>
             </div>
         </div>
@@ -55,7 +69,7 @@ $this->display('_Header.tpl.php');
                 </ul>
             </div>
         </div>
-        <div class="panel panel-card clearfix">
+        <div class="panel panel-card clearfix" >
             <ul class="nav nav-md nav-tabs nav-lines b-info">
                 <li class="active">
                     <a href="" data-toggle="tab" data-target="#tab_1" aria-expanded="true">Mapa</a>
@@ -66,17 +80,17 @@ $this->display('_Header.tpl.php');
             </ul>
             <div class="tab-content p m-b-md b-t b-t-2x">
                 <div role="tabpanel" class="tab-pane animated fadeIn active" id="tab_1">
-                    <div id='googleMap' style='width:400px;height:400px;margin: auto'></div>
+                    <div id='googleMap'></div>
                 </div>
                 <div role="tabpanel" class="tab-pane animated fadeIn" id="tab_2">
-                    bitches
+                    En construccion
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4-LpGRhQvBCmeuEcv6UqBdpu6-8SyDMk"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgSePuD5fwaC1pDJlv3MkmdC9SHTMmkCA"></script>
 <script>
     $(document).ready(function() {
         InicializarMapa(<?php echo $this->poster->Latitud ?>, <?php echo $this->poster->Longitud ?>);//Inicializar mapa con la ciudad de La Paz por defecto
@@ -119,6 +133,14 @@ $this->display('_Header.tpl.php');
             //marker.setPosition(event.latLng);
             //setLatLong(infowindow,map,marker,event.latLng.lat(),event.latLng.lng());
         });
+
+        //Resize Function
+        google.maps.event.addDomListener(window, "resize", function() {
+            var center = map.getCenter();
+            google.maps.event.trigger(map, "resize");
+            map.setCenter(center);
+        });
+
         setLatLong(infowindow,map,marker,marker.getPosition().lat(), marker.getPosition().lng());
     }
 

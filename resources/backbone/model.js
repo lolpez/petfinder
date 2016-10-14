@@ -246,6 +246,7 @@ model.PosterModel = Backbone.Model.extend({
     tipoMascota_nombre : '',
     raza_nombre : '',
     usuario_nombre : '',
+    usuario_id_facebook : '',
     defaults: {
 		'pkposter': null,
 		'fkusuario': '',
@@ -266,7 +267,8 @@ model.PosterModel = Backbone.Model.extend({
         'mascota_estado' : '',
         'tipoMascota_nombre' : '',
         'raza_nombre' : '',
-        'usuario_nombre' : ''
+        'usuario_nombre' : '',
+        'usuario_id_facebook' : ''
 	}
 });
 

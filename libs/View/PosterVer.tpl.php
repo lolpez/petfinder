@@ -147,8 +147,6 @@ $this->display('_Header.tpl.php');
     function setLatLong(infowindow, map, marker, latitud, longitud){
         infowindow.setContent('Latitud: ' + latitud + '<br>Longitud: ' + longitud);
         infowindow.open(map,marker);
-        $("#latitud").attr("value", latitud);
-        $("#longitud").attr("value", longitud);
     }
 </script>
 

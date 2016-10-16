@@ -42,6 +42,11 @@ class PosterController extends AppBaseController
 		$this->Render();
 	}
 
+    public function Tabla()
+    {
+        $this->Render('PosterListViewTabla');
+    }
+
     public function Listar()
     {
         require_once 'Model/MascotaCriteria.php';
@@ -130,7 +135,10 @@ class PosterController extends AppBaseController
 				if ($_FILES["imagen"]['size'] > 0) {
 					$extencion = pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
 					$imagen->Ruta = "resources/images/pets/".$imagen->Fkposter.".".$extencion;
-					move_uploaded_file($_FILES['imagen']['tmp_name'],  $imagen->Ruta);
+					//move_uploaded_file($_FILES['imagen']['tmp_name'],  $imagen->Ruta);
+                    move_uploaded_file( $_FILES['imagen']['tmp_name'], $imagen->Ruta );
+                    $imagen->Ruta = "resources/images/pets/thumb/".$imagen->Fkposter.".".$extencion;
+                    $this->thumbnail( $imagen->Fkposter.".".$extencion, 'resources/images/pets/', 'resources/images/pets/thumb/', 400, 400 );
 				}else{
 					$imagen->Ruta = '';
 				}
@@ -151,6 +159,34 @@ class PosterController extends AppBaseController
 				echo $poster->Pkposter;
 			}
         }
+    }
+
+    public function thumbnail( $img, $source, $dest, $maxw, $maxh ) {
+        $jpg = $source.$img;
+
+        if( $jpg ) {
+            list( $width, $height  ) = getimagesize( $jpg ); //$type will return the type of the image
+            $source = imagecreatefromjpeg( $jpg );
+
+            if( $maxw >= $width && $maxh >= $height ) {
+                $ratio = 1;
+            }elseif( $width > $height ) {
+                $ratio = $maxw / $width;
+            }else {
+                $ratio = $maxh / $height;
+            }
+
+            $thumb_width = round( $width * $ratio ); //get the smaller value from cal # floor()
+            $thumb_height = round( $height * $ratio );
+
+            $thumb = imagecreatetruecolor( $thumb_width, $thumb_height );
+            imagecopyresampled( $thumb, $source, 0, 0, 0, 0, $thumb_width, $thumb_height, $width, $height );
+
+            $path = $dest.$img;
+            imagejpeg( $thumb, $path, 75 );
+        }
+        imagedestroy( $thumb );
+        imagedestroy( $source );
     }
 
 	/**

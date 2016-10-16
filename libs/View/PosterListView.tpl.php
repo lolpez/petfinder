@@ -40,8 +40,8 @@ $this->display('_Header.tpl.php');
 		<% var i=0; %>
 		<% items.each(function(item) { %>
 			<% if (i == 0){ %> <div class="row"> <% } %>
-				<div class="col-sm-3">
-					<div class="panel panel-card blue">
+				<div class="col-sm-4">
+					<div class="panel panel-card">
 						<div class="item text-center">
 							<% if (_.escape(item.get('imagen')) != '') { %>
 								<img src="<%= _.escape(item.get('imagen') || '') %>" class="w-full r-t" style="height: 200px; max-height: 200px; max-width:200px" >
@@ -66,7 +66,7 @@ $this->display('_Header.tpl.php');
 						</div>
 					</div>
 				</div>
-			<% if (i == 3){ i=0; %> </div> <% }else{ i++; } %>
+			<% if (i == 2){ i=0; %> </div> <% }else{ i++; } %>
 		<% }); %>
 		<% if (i != 0){ %> </div> <% } %>           
 	</div>    

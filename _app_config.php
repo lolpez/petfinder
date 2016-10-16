@@ -120,7 +120,7 @@ GlobalConfig::$ROUTE_MAP = array(
 		
 	// Poster
 	'GET:posters' => array('route' => 'Poster.ListView'),
-	'GET:posters/tabla' => array('route' => 'Poster.TablaView'),
+	'GET:posters/tabla' => array('route' => 'Poster.Tabla'),
 	'GET:poster/nuevo' => array('route' => 'Poster.Nuevo'),
 	'GET:poster/(:num)' => array('route' => 'Poster.SingleView', 'params' => array('pkposter' => 1)),
 	'GET:api/posters' => array('route' => 'Poster.Query'),
@@ -160,6 +160,7 @@ GlobalConfig::$ROUTE_MAP = array(
 	// Usuario
 	'GET:usuarios' => array('route' => 'Usuario.ListView'),
 	'GET:usuario/(:num)' => array('route' => 'Usuario.SingleView', 'params' => array('pkusuario' => 1)),
+    'GET:usuario/nuevo' => array('route' => 'Usuario.Nuevo'),
 	'GET:api/usuarios' => array('route' => 'Usuario.Query'),
 	'POST:api/usuario' => array('route' => 'Usuario.Create'),
 	'GET:api/usuario/(:num)' => array('route' => 'Usuario.Read', 'params' => array('pkusuario' => 2)),

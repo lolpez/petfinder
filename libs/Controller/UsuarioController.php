@@ -40,6 +40,10 @@ class UsuarioController extends AppBaseController
 		$this->Render();
 	}
 
+    public function Nuevo(){
+        $this->Render('UsuarioNuevo');
+    }
+
     public function Guardar(){
         //Insertar poster
         $usuario = new Usuario($this->Phreezer);
@@ -49,19 +53,19 @@ class UsuarioController extends AppBaseController
         $usuario->Nrotelefono = $_POST['nro_telefono'];
         $usuario->IdFacebook = $_POST['id_facebook'];
         $usuario->Validate();
+		$errors = $usuario->GetValidationErrors();
+		require_once 'Model/UsuarioCriteria.php';
+		//Verificar que el codigo facebook sea unico
+		$criteria = new UsuarioCriteria();
+		$criteria->IdFacebook_Equals = $usuario->IdFacebook;
+		$resultado = $this->Phreezer->Query('Usuario',$criteria)->ToObjectArray(true, $this->SimpleObjectParams());
 
-        require_once 'Model/UsuarioCriteria.php';
-        //Verificar que el codigo facebook sea unico
-        $criteria = new UsuarioCriteria();
-        $criteria->IdFacebook_Equals = $usuario->IdFacebook;
-		$resultado = $this->Phreezer->GetByCriteria('Usuario',$criteria)->ToObject();
-		
 		if (count($resultado) == 1){
 			//El usuario ya existe
-			echo $resultado->Pkusuario;
+			echo $resultado[0]->pkusuario;
 		}else{
 			//Registrar nuevo
-			 if (count($usuario->GetValidationErrors()) > 0)
+			if (count($errors) > 0)
 			{
 				echo 0;
 			}
@@ -70,7 +74,7 @@ class UsuarioController extends AppBaseController
 				$usuario->Save();
 				echo $usuario->Pkusuario;
 			}
-		}       
+		} 
     }
 
 	/**
@@ -198,13 +202,12 @@ class UsuarioController extends AppBaseController
             //Verificar que el codigo facebook sea unico
             $criteria = new UsuarioCriteria();
             $criteria->IdFacebook_Equals = $usuario->IdFacebook;
-			$resultado = $this->Phreezer->GetByCriteria('Usuario',$criteria)->ToObject();
-			
+			$resultado = $this->Phreezer->Query('Usuario',$criteria)->ToObjectArray(true, $this->SimpleObjectParams());
 			
 			
 			if (count($resultado) == 1){
 				//El usuario ya existe
-				$this->RenderErrorJSON('El ID de facebook '.$resultado->IdFacebook.' ya existe',$errors);
+				$this->RenderErrorJSON('El ID de facebook '.$resultado[0]->idFacebook.' ya existe',$errors);
 			}else{
 				//Registrar nuevo
 				if (count($errors) > 0)

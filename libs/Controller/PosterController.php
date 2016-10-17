@@ -134,11 +134,11 @@ class PosterController extends AppBaseController
 			if (isset($_FILES["imagen"])){
 				if ($_FILES["imagen"]['size'] > 0) {
 					$extencion = pathinfo($_FILES["imagen"]["name"],PATHINFO_EXTENSION);
-					$imagen->Ruta = "resources/images/pets/".$imagen->Fkposter.".".$extencion;
-					//move_uploaded_file($_FILES['imagen']['tmp_name'],  $imagen->Ruta);
+                    $nombre = date("d-m-Y").'-'.date("h-i-s").'-'.$imagen->Fkposter.'.'.$extencion;
+					$imagen->Ruta = "resources/images/pets/".$nombre;
                     move_uploaded_file( $_FILES['imagen']['tmp_name'], $imagen->Ruta );
-                    $imagen->Ruta = "resources/images/pets/thumb/".$imagen->Fkposter.".".$extencion;
-                    $this->thumbnail( $imagen->Fkposter.".".$extencion, 'resources/images/pets/', 'resources/images/pets/thumb/', 400, 400 );
+                    $imagen->Ruta = "resources/images/pets/thumb/".$nombre;
+                    $this->thumbnail($nombre, 'resources/images/pets/', 'resources/images/pets/thumb/', 400, 400 );
 				}else{
 					$imagen->Ruta = '';
 				}

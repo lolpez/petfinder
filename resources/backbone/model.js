@@ -383,3 +383,39 @@ model.UsuarioCollection = model.AbstractCollection.extend({
 	url: 'api/usuarios',
 	model: model.UsuarioModel
 });
+
+/**
+ * Afiliado Backbone Model
+ */
+model.AfiliadoModel = Backbone.Model.extend({
+    urlRoot: 'api/afiliado',
+    idAttribute: 'pkafiliado',
+    pkafiliado: '',
+    nombre: '',
+    direccion: '',
+    latitud: '',
+    longitud: '',
+    telefono: '',
+    descripcion: '',
+    fkusuario: '',
+    plan: '',
+    defaults: {
+        'pkafiliado': null,
+        'nombre': '',
+        'direccion': '',
+        'latitud': '',
+        'longitud': '',
+        'telefono': '',
+        'descripcion': '',
+        'fkusuario': '',
+        'plan': ''
+    }
+});
+
+/**
+ * Afiliado Backbone Collection
+ */
+model.AfiliadoCollection = model.AbstractCollection.extend({
+    url: 'api/afiliados',
+    model: model.AfiliadoModel
+});

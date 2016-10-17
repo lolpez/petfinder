@@ -167,7 +167,16 @@ GlobalConfig::$ROUTE_MAP = array(
 	'PUT:api/usuario/(:num)' => array('route' => 'Usuario.Update', 'params' => array('pkusuario' => 2)),
 	'DELETE:api/usuario/(:num)' => array('route' => 'Usuario.Delete', 'params' => array('pkusuario' => 2)),
 
-	// catch any broken API urls
+    // Afiliado
+    'GET:afiliados' => array('route' => 'Afiliado.ListView'),
+    'GET:afiliado/(:num)' => array('route' => 'Afiliado.SingleView', 'params' => array('pkafiliado' => 1)),
+    'GET:api/afiliados' => array('route' => 'Afiliado.Query'),
+    'POST:api/afiliado' => array('route' => 'Afiliado.Create'),
+    'GET:api/afiliado/(:num)' => array('route' => 'Afiliado.Read', 'params' => array('pkafiliado' => 2)),
+    'PUT:api/afiliado/(:num)' => array('route' => 'Afiliado.Update', 'params' => array('pkafiliado' => 2)),
+    'DELETE:api/afiliado/(:num)' => array('route' => 'Afiliado.Delete', 'params' => array('pkafiliado' => 2)),
+
+    // catch any broken API urls
 	'GET:api/(:any)' => array('route' => 'Default.ErrorApi404'),
 	'PUT:api/(:any)' => array('route' => 'Default.ErrorApi404'),
 	'POST:api/(:any)' => array('route' => 'Default.ErrorApi404'),

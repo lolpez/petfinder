@@ -68,7 +68,7 @@ $this->display('_Header.tpl.php');
 				</div>
 			<% if (i == 2){ i=0; %> </div> <% }else{ i++; } %>
 		<% }); %>
-		<% if (i != 0){ %> </div> <% } %>           
+		<% if (i != 0){ %> </div> <% } %>
 	</div>    
 </script>
 

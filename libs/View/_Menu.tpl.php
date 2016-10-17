@@ -1,4 +1,3 @@
-<!-- aside -->
 <aside id="aside" class="app-aside modal fade" role="menu">
     <div class="left">
         <div class="box bg-white">
@@ -64,15 +63,16 @@
                                         </a>
                                         <ul class="nav nav-sub">
                                             <ul class="nav">
-												<li <?php if ($this->nav=='imagenes') { echo 'class="active"'; } ?>><a href="./imagenes">Imagenes</a></li>
-												<li <?php if ($this->nav=='mascotas') { echo 'class="active"'; } ?>><a href="./mascotas">Mascotas</a></li>
-												<li <?php if ($this->nav=='notificaciones') { echo 'class="active"'; } ?>><a href="./notificaciones">Notificaciones</a></li>
-												<li <?php if ($this->nav=='posters') { echo 'class="active"'; } ?>><a href="./posters">Posters</a></li>
-												<li <?php if ($this->nav=='razas') { echo 'class="active"'; } ?>><a href="./razas">Razas</a></li>
-												<li <?php if ($this->nav=='tipomascotas') { echo 'class="active"'; } ?>><a href="./tipomascotas">TipoMascotas</a></li>
-												<li <?php if ($this->nav=='tipoposters') { echo 'class="active"'; } ?>><a href="./tipoposters">TipoPosters</a></li>
-												<li <?php if ($this->nav=='usuarios') { echo 'class="active"'; } ?>><a href="./usuarios">Usuarios</a></li>
-											</ul>
+                                                <li <?php if ($this->nav=='imagenes') { echo 'class="active"'; } ?>><a href="./imagenes">Imagenes</a></li>
+                                                <li <?php if ($this->nav=='mascotas') { echo 'class="active"'; } ?>><a href="./mascotas">Mascotas</a></li>
+                                                <li <?php if ($this->nav=='notificaciones') { echo 'class="active"'; } ?>><a href="./notificaciones">Notificaciones</a></li>
+                                                <li <?php if ($this->nav=='posters') { echo 'class="active"'; } ?>><a href="./posters">Posters</a></li>
+                                                <li <?php if ($this->nav=='razas') { echo 'class="active"'; } ?>><a href="./razas">Razas</a></li>
+                                                <li <?php if ($this->nav=='tipomascotas') { echo 'class="active"'; } ?>><a href="./tipomascotas">TipoMascotas</a></li>
+                                                <li <?php if ($this->nav=='tipoposters') { echo 'class="active"'; } ?>><a href="./tipoposters">TipoPosters</a></li>
+                                                <li <?php if ($this->nav=='usuarios') { echo 'class="active"'; } ?>><a href="./usuarios">Usuarios</a></li>
+                                                <li <?php if ($this->nav=='afiliados') { echo 'class="active"'; } ?>><a href="./afiliados">Afiliados</a></li>
+                                            </ul>
                                         </ul>
                                     </li>
                                 </ul>
@@ -94,13 +94,32 @@
         </div>
     </div>
 </aside>
-<!-- / aside -->
 
 <!-- Contenido -->
 <div id="content" class="app-content" role="main">
     <div class="box">
         <div class="navbar md-whiteframe-z1 no-radius blue">
             <a md-ink-ripple  data-toggle="modal" data-target="#aside" class="navbar-item pull-left visible-xs visible-sm"><i class="mdi-navigation-menu i-24"></i></a>
+
+            <ul class="nav nav-sm navbar-tool pull-right">
+                <li>
+                    <a md-ink-ripple="" data-toggle="modal" data-target="#user" class=" waves-effect">
+                        <i class="mdi-social-notifications i-24"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a md-ink-ripple="" data-toggle="dropdown" class=" waves-effect" aria-expanded="false">
+                        <i class="mdi-social-person i-24"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-scale pull-right pull-up text-color">
+                        <li><a href="">Single-column view</a></li>
+                        <li><a href="">Sort by date</a></li>
+                        <li><a href="">Sort by name</a></li>
+                        <li class="divider"></li>
+                        <li><a href="">Help &amp; feedback</a></li>
+                    </ul>
+                </li>
+            </ul>
         </div>
         <div class="box-row">
             <div class="box-cell">
